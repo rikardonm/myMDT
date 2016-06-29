@@ -1,0 +1,130 @@
+\chapter{Revisão Bibliográfica}\label{cap:revbib}
+%liar liar pants on fire
+
+	\section{Metrologia de Grandezas Elétricas}\label{sec:revbib:metrologia}
+
+		O processo de medição de grandezas físicas por meio de um circuito eletrônico é baseado na conversão desta grandeza de interesse para uma grandeza elétrica, muitas vezes tensão ou corrente. Alguns sensores e transdutores, como telas de toque capacitivas, realizam a conversão para elementos elétricos equivalentes, como capacitâncias. Nestes casos, uma combinação de medidas de tensão e corrente devem ser utilizadas.
+%just wait for it, wait for it
+
+		A resolução é um conceito que pode ser aplicado somente em sistemas digitais, e corresponde à menor parte de um sinal que pode ser detectado. Segundo \textcite{spoonkillerwiki} a resolução de um instrumento pode ser expressa em bits, dígitos e outros. Muitas vezes é esperado que um instrumento com maior resolução apresente melhor desempenho, entretanto esta consideração é equivocada, pois desconsidera outras características, como precisão, linearidade e incerteza. Mais definições sobre as medidas são apresentadas em \cite[][p.16]{spoonkillerwiki}, \cite[][p.16]{npl132} e \cite[][p.4]{spoonkillerwiki}.
+
+		Conforme as especificações do sensor de efeito Hall ACS712 \cite{spoonkillerwiki} a não linearidade da medida pode atingir 1.5\%. Este erro de medição tem maior influência em sistemas sem compensação, como grande parte de malhas de controle com retro-alimentação analógicas. A distorção de sinais pela não linearidade gera a modificação do espectro da medida, fenômeno muitas vezes indesejado. Este efeito pode ser compensando pelo processo de calibração com polinômios de ordem $n > 1$, detalhado em \cite{spoonkillerwiki}.
+
+		Juntamente com a precisão dos sensores e dos circuitos do instrumento, o ruído de medição é um dos fatores utilizados no cálculo da incerteza de uma medida, conforme \cite[][p.4]{spoonkillerwiki}. A incerteza representa uma faixa, ao redor da medida realizada, que contém o valor real. Esta faixa é estimada a partir de análises estatísticas ou a partir de estimativas de desempenho do sistema de medição ou outros fatores \cite[][p.25]{npl132}. Assim, a qualidade de um sistema de medição pode ser inferida através da incerteza que este apresenta.
+
+
+	\section{Calibração e Auto-Calibração}\label{sec:revbib:calibration}
+
+		O processo de calibração de um instrumento, através da redução de erros de \textit{offset}, ganho e não linearidades, aumenta radicalmente a precisão das medidas realizadas, uma vez que este processo compensa variações na temperatura, envelhecimento dos componentes e outros \cite[][p.5]{spoonkillervideo}. É devido a esta significativa melhora que instrumentos, como osciloscópios e pontes LCR, além de apresentar a auto-calibração iniciada pelo usuário recomendam sua execução periodicamente.
+
+		Segundo \textcite{spoonkillervideo} e \textcite{spoonkillervideo} o erro de \textit{offset} é o deslocamento vertical da curva medida em relação à curva 1:1 correspondente ao dispositivo utilizado, e o erro de ganho é a diferença entre os coeficientes lineares da curva medida e a curva referência. Esta curva representa a função de transferência de sensor, transdutor ou sistema de medição ideal. A curva referência possui coeficiente linear unitário e deslocamento vertical nulo.
+
+		As etapas do processo de correção da medida, implementando em \textit{hardware} ou \textit{software}, são ilustradas na Figura \ref{img:meas:error}. A medida original é ilustrada na Figura \ref{img:meas:error:none}, em qual as escalas vertical e horizontal foram normalizadas. Esta normalização é realizada para a fácil interpretação e comparação visual do processo, sendo o eixo $y$ normalizado em relação à saída do sistema (código binário em um ADC) enquanto o eixo $x$ é normalizado em relação a entrada (tensão entre $0 V$ e $Vcc$ em um potenciômetro).
+
+		A Figura \ref{img:meas:error:all} apresenta a medida original, não compensada, em relação a curva 1:1. A primeira etapa de correção consiste na determinação do fator \simb{bcomp}, correspondente ao deslocamento vertical da curva quando a entrada do sistema é 0. A aplicação da primeira etapa é ilustrada na diferença entre as Figuras \ref{img:meas:error:all} e \ref{img:meas:error:offset}. A segunda etapa consiste na obtenção de um fator de proporcionalidade \simb{mcomp}. O resultado de sua aplicação pode ser observado na Figura \ref{img:meas:error:gain}.
+
+		%Sistemas que apresentam características não lineares podem ser linearizados através de funções polinomiais, por exemplo. Os trabalhos de \cite{Kouider2003} e \cite{nadi2008embedded} apresentam a compensação de transdutores de pressão com resposta não linear através de métodos iterativos de correção. \citeauthor{Kouider2003} \citeyear[][p.3]{Kouider2003} apresentam as equações para o cálculo dos coeficientes de correção para um polinômio de grau $n$.
+
+		Para \textcite{spoonkillervideo} a aplicação do método de compensação de primeiro grau resultou em uma redução do erro de 33\% para 0.4\%. Devido a esta significativa melhora de desempenho, CIs de diversos fabricantes e aplicações empregam opções de correção manual ou por auto-calibração, como o ADC ADS1259 da Texas Instruments\textsuperscript{\textregistered} e o CI dedicado ADE7753 da Analog Devices\textsuperscript{\textregistered}. Após o procedimento apropriado de compensação o ADS1259 apresenta um erro de ganho de $\pm 0.0002\%$ e erro de deslocamento de $\pm 1\mu V$. Instrumentos laboratoriais de precisão, como o multímetro digital Fluke\textsuperscript{\textregistered} 8846A apresentam opção de correção de suas medidas com somente o fator \simb{bcomp}, através da opção \textit{Offset}, ou com ambos os fatores \simb{mcomp} e \simb{bcomp}, através da opção \textit{MX+B}.
+		\index{ADC}
+		\index{ADS1259}
+		\index{ADE7753}
+		\index{FLUKE}
+
+		\begin{figure}[h]
+			\caption{Processo de correção da medida, em que o eixo $X$ representa a entrada normalizada do sistema e o eixo $Y$ representa a saída normalizada do sistema}
+			\label{img:meas:error}
+			\centering
+			\begin{subfigure}{0.45\textwidth}
+				\caption{Medida original}
+				\label{img:meas:error:none}
+				\begin{tikzpicture}[scale=4.0]
+				%draw axis
+				\draw [<->, ultra thick] (0,1.2) -- (0,0) -- (1.2,0);
+				\node [below, text label] at (1,0) {1};
+				\node [left, text label] at (0,1) {1};
+				\draw [thin, lightgray!45, dashed] (0,1) -- (1,1) -- (1,0);
+				\draw [blue, thick] (0,0.07) -- (1,0.8) node [text label, right] {Medidas\\Original};
+				\draw [magenta, thick] (0, 0.435) -- (0.5, 0.435) -- (0.5, 0);
+%				\node [left, text label] at (0, 0.5) {0.5};
+				\node [below left, text label, magenta] at (0, 0.435) {0,435};
+				\node [left, text label, magenta] at (0, 0.07) {0,07};
+				\draw [magenta, thick] (0, 0.8) -- (1, 0.8);
+				\node [left, text label, magenta] at (0, 0.8) {0,8};
+				\node [below, text label] at (0.5, 0) {0,5};
+%				\draw [black, thick, dotted] (0, 0.5) -- (0.5, 0.5) -- (0.5, 0);
+				\end{tikzpicture}
+			\end{subfigure}		%okay, i guess i have to admit it. and they all say that the first step is "being aware", and go by it. well, if you want me to say "i am", it is said.
+			\begin{subfigure}{0.45\textwidth}			%now, it just said it because first, i am, and second, i can be.
+%				\begin{tikzpicture}[transform canvas={scale=6.0}]
+				\caption{Medida original vs. curva 1:1}
+				\label{img:meas:error:all}
+			\begin{tikzpicture}[scale=4.0]
+				%draw axis
+				\draw [<->, ultra thick] (0,1.2) -- (0,0) -- (1.2,0);
+				\draw [teal, thick] (0,0) -- (1,1) node [text label, right] {1:1};
+				\node [below, text label] at (1,0) {1};
+				\node [left, text label] at (0,1) {1};
+				\draw [thin, lightgray!45, dashed] (0,1) -- (1,1) -- (1,0);
+				\draw [blue, thick] (0,0.07) -- (1,0.8) node [text label, right] {Medidas\\Originais};
+				\draw [magenta, thick] (0, 0.435) -- (0.5, 0.435) -- (0.5, 0);
+				\draw [black, thick, dotted] (0, 0.5) -- (0.5, 0.5) -- (0.5, 0);
+				\node [left, text label] at (0, 0.5) {0,5};
+				\node [below left, text label, magenta] at (0, 0.435) {0,435};
+				\node [left, text label, magenta] at (0, 0.07) {0,07};
+				\draw [magenta, thick] (0, 0.8) -- (1, 0.8);
+				\node [left, text label, magenta] at (0, 0.8) {0,8};
+				\node [below, text label] at (0.5, 0) {0,5};
+				\end{tikzpicture}
+			\end{subfigure}
+%if one really is true, it does not neeed further discussion
+
+			\begin{subfigure}{0.45\textwidth}
+				\caption{Medida deslocada vs. curva 1:1}
+				\label{img:meas:error:offset}
+				%				\begin{tikzpicture}[transform canvas={scale=6.0}]
+				\begin{tikzpicture}[scale=4.0]
+				\draw [<->, ultra thick] (0,1.2) -- (0,0) -- (1.2,0);
+				\draw [teal, thick] (0,0) -- (1,1) node [text label, right] {1:1};
+				\node [below, text label] at (1,0) {1};
+				\node [left, text label] at (0,1) {1};
+				\draw [thin, lightgray!45, dashed] (0,1) -- (1,1) -- (1,0);
+				\draw [blue, thick] (0,0) -- (1,0.73) node [text label, right] {Medidas\\Deslocadas};
+				\draw [magenta, thick] (0, 0.435) -- (0.5, 0.435) -- (0.5, 0);
+				\draw [black, thick, dotted] (0, 0.5) -- (0.5, 0.5) -- (0.5, 0);
+				\node [left, text label] at (0, 0.5) {0,5};
+				\node [below left, text label, magenta] at (0, 0.435) {0,435};
+				\node [below left, text label, magenta] at (0, 0.73) {0,73};
+				\node [below, text label] at (0.5, 0) {0,5};
+				\node [left, text label, magenta] at (0, 0.07) {0,07};
+				\draw [magenta, thick] (0, 0.8) -- (1, 0.8);
+				\draw [magenta, thick] (0, 0.73) -- (1, 0.73);
+				\node [left, text label, magenta] at (0, 0.8) {0,8};
+				\end{tikzpicture}
+			\end{subfigure}
+			\begin{subfigure}{0.45\textwidth}
+				\caption{Medida totalmente corrigida}
+				\label{img:meas:error:gain}
+				\begin{tikzpicture}[scale=4.0]
+				\draw [<->, ultra thick] (0,1.2) -- (0,0) -- (1.2,0);
+				\node [below, text label] at (1,0) {1};
+				\node [left, text label] at (0,1) {1};
+				\draw [thin, lightgray!45, dashed] (0,1) -- (1,1) -- (1,0);
+				\draw [blue, thick] (0,0) -- (1,1) node [text label, right] {Medidas\\Corrigidas};
+				\draw [magenta, thick] (0, 0.435) -- (0.5, 0.435) -- (0.5, 0);
+				\draw [black, thick, dotted] (0, 0.5) -- (0.5, 0.5) -- (0.5, 0);
+				\node [left, text label] at (0, 0.5) {0,5};
+				\node [below left, text label, magenta] at (0, 0.435) {0,435};
+				\node [below, text label] at (0.5, 0) {0,5};
+				\node [left, text label, magenta] at (0, 0.07) {0,07};
+				\draw [magenta, thick] (0, 0.8) -- (1, 0.8);
+				\node [left, text label, magenta] at (0, 0.8) {0,8};
+				\end{tikzpicture}
+			\end{subfigure}
+%my goal is to know all the black magic that can be known
+		\end{figure}
+
+%there's no such motivation as a tight deadline
+%damn, it is a sweet one today. and what's the deal with the light choice?
+%never erase somehting that you've already written or done
+

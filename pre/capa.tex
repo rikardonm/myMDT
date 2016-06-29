@@ -1,0 +1,48 @@
+% faz-se a capa
+\begin{capa}
+	\centering
+	\onehalfspacing
+	\fonte{14}
+	\MakeUppercase{\bfseries\universidade}\par
+	\MakeUppercase{\bfseries\centroCurso}\par
+	\MakeUppercase{\bfseries\departamentoPrograma}\par
+	\vspace{160pt}
+	\fonte{16}
+	\textsc{\bfseries\tituloTrabalho}\par
+	\vspace{144pt}
+	\fonte{14}
+	\textsc{\bfseries\grauTrabalho}\par
+	\vspace{98pt}
+	{\bfseries\autor}\par
+	%bottom of page
+	\vfill
+	{\bfseries \cidadeCEP}\par
+	{\bfseries \ano}\par
+
+	%reseta contagem das páginas, just for
+	%\setcounter{page}{1}
+\end{capa}
+% se tem lombada na capa, ela é impressa em cima.
+% se não, imprimir em folha separada, ou nem imprimir?
+\newlength{\leftlength}
+\newlength{\rightlength}
+\iflombadaNaCapa
+	\setlength{\leftlength}{0cm}
+	\setlength{\rightlength}{2cm}
+	\colorlet{lombadaQuadro}{white}
+	\colorlet{lombadaTexto}{black}
+\else
+	\clearpage
+	\setlength{\leftlength}{2cm}
+	\setlength{\rightlength}{5cm}
+	\colorlet{lombadaQuadro}{black}
+	\colorlet{lombadaTexto}{white}
+\fi
+	\begin{tikzpicture}[remember picture, overlay]
+		\node (left1)	at	(current page.south west) [xshift=\leftlength] {};
+		\node (right1)	at	(current page.north west) [xshift=\rightlength] {};
+		\draw	[fill=lombadaQuadro, draw=none] (left1)	rectangle	node [rotate=270, text width=\paperheight]
+			{\textcolor{lombadaTexto}{\hspace*{3cm}\fonte{20}\departamentoProgramaSigla , \estadoCEP\hfill\autorCitacao\hfill\ano\hspace*{4cm}}}	(right1);
+		%\node (lombada) at (current page.center) [rotate=270] {\textcolor{white}{\departamentoProgramaSigla ,\quad\estadoCEP\qquad\autorCitacao\quad\ano}};
+	\end{tikzpicture}
+

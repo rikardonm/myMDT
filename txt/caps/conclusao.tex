@@ -1,0 +1,37 @@
+\chapter{Conclusão}\label{cap:conclusao}
+
+	A partir dos resultados experimentais apresentados na seção \xx, é possível realizar uma avaliação comparativa em relação às características propostos na seção \ref{sec:intro:objetivo}. O projeto em módulos torna o escalável, possibilitando a utilização de diversos circuitos de medição em um sistema de controle único. Devido a este fator, o custo final do sistema é dependente do número de módulos utilizado. Apesar disso, a priorização da qualidade das medidas faz com que o projeto não obedeça o que quesito de baixo custo.
+
+
+	\section{Aprimoramentos do Projeto e Trabalhos Futuros}\label{sec:conclusao:melhoras}
+
+	O programa myGrapher apresentou desempenho satisfatório para uma taxa de amostragem de 1,2 kSPS. Entretanto, são listadas a seguir algumas modificações visando a melhoria do programa, no seu formato visual quanto no seu desempenho de processamento e cálculo:
+	\index{\textit{myGrapher}}
+
+		\begin{itemize}
+			\item Adição de controles de cor sobre o conteúdo do gráfico;
+			\item Adição de controles de escala nos eixos X e Y;
+			\item Adição de característica de rolagem de dados no tempo;
+			\item Adição de vetor de tempo no armazenamento e gravação dos dados;
+			\item Adição de outros formatos de número na exportação de dados;
+			\item Modificação da função de processamento gráfico para uma biblioteca mais leve;
+			\item Disponibilizar o programa em uma página na internet, possibilitando que o programa realize atualizações de forma automática;
+			\item Adição de cálculo de tamanho de exportação do arquivo de dados (utilizar dados das ultimas transferências);
+			\item Retirada dos \textit{buffers} intermediários, gravação direta na memória;
+			\item Correção do valor RMS calculado;
+			\item Bug na gravação de dados em CSV, delimitador duplo ao final de uma página de memória;
+			\item Correção do indicador \textit{Skip Counter}.
+		\end{itemize}
+		\index{CSV}
+
+	A partir da observação do circuito do primeiro protótipo, é possível reduzir o número de isoladores necessários pode ser reduzido pela remoção dos sinais de ganho G0 a G4. Um registrador de deslocamento pode ser utilizado para realizar a conversão de um sinal serial correspondente aos ganhos G0 a G4, reduzindo o número de sinais necessários para 2 (CLK e DTA). Além disso, estes podem ser acoplados aos barramento SPI. O compartilhamento do sinal DTA com o sinal MOSI reduz de 5 para 1 o número de sinais necessários para isolação do controle de ganho do módulo.
+
+	Também, poucos dados de corrente foram adquiridos, e em níveis baixos ao considerar a faixa de operação projetada, conduzindo assim à redução da confiabilidade dos resultados obtidos. Além disso, estes resultados foram comparados com um equipamento laboratorial não certificado como referência de calibração. A realização de mais comparativos com outros medidores e com níveis de corrente mais elevados pode reduzir o efeito destes fatores. Contudo, a calibração com uma referência certificada é o procedimento correto e, portanto, o mais indicado.
+
+	Por fim, em um posterior desenvolvimento de outros protótipos, uma caixa ou invólucro deve ser considerada, afim de possibilitar sua classificação nos graus de segurança (IP) da norma IEC 60529;
+
+	Em futuras versões, uma configuração da taxa de aquisição pode ser implementada como melhoria do sistema \textit{firmware} do sistema de controle. Esta configuração possibilita o melhor aproveitamento de desempenho do conversor ADC utilizado.
+	\index{DTA}
+	\index{DTR}
+	\index{SPI}
+

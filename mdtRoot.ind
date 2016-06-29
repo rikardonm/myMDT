@@ -1,0 +1,121 @@
+\begin{theindex}
+
+  \item .NET, \hyperpage{22}, \hyperpage{27--29}
+  \item .bin, \hyperpage{22}
+  \item .bmp, \hyperpage{29}
+  \item .jpg, \hyperpage{22}, \hyperpage{29}
+  \item .png, \hyperpage{22}, \hyperpage{29}
+  \item \acs {bcomp}, \hyperpage{20}
+  \item \acs {mcomp}, \hyperpage{20}
+  \item \acs{uc}, \hyperpage{33}
+  \item \textit{myGrapher}, \hyperpage{30}
+
+  \indexspace
+
+  \item ADC, \hyperpage{20}
+  \item ADE7753, \hyperpage{20}
+  \item ADS1259, \hyperpage{20}
+  \item Atualiza Gr\IeC {\'a}fico, \hyperpage{23, 24}, 
+		\hyperpage{27, 28}
+
+  \indexspace
+
+  \item BackgroundWorker, \hyperpage{27}
+  \item bank0, \hyperpage{26, 27}
+  \item bank1, \hyperpage{26, 27}
+  \item bin\IeC {\'a}rio, \hyperpage{29}
+  \item Blind, \hyperpage{24}
+  \item buffSize, \hyperpage{24}
+
+  \indexspace
+
+  \item C++, \hyperpage{33}
+  \item C\#, \hyperpage{22}
+  \item callback, \hyperpage{27}
+  \item Clear Graph, \hyperpage{24}
+  \item connectClick, \hyperpage{26}
+  \item CSV, \hyperpage{22}, \hyperpage{28--30}
+
+  \indexspace
+
+  \item DoWork, \hyperpage{27, 28}
+  \item DTA, \hyperpage{31}
+  \item DTR, \hyperpage{24}, \hyperpage{31}
+
+  \indexspace
+
+  \item Export Graph Data, \hyperpage{24}
+
+  \indexspace
+
+  \item float, \hyperpage{22}, \hyperpage{28}
+  \item FLUKE, \hyperpage{20}
+
+  \indexspace
+
+  \item GBL, \hyperpage{58}
+  \item GERBER, \hyperpage{58}
+  \item graphEn, \hyperpage{24}, \hyperpage{26}
+  \item Graphing, \hyperpage{24}
+  \item GTL, \hyperpage{58}
+
+  \indexspace
+
+  \item IG, \hyperpage{22}, \hyperpage{25, 26}
+
+  \indexspace
+
+  \item LabVIEW\textsuperscript{\textregistered}, \hyperpage{14}
+
+  \indexspace
+
+  \item mainMem, \hyperpage{26, 27}
+  \item Matlab\textsuperscript{\textregistered}, \hyperpage{14}
+  \item Microsoft Visual Studio Community \textsuperscript{\textregistered}, 
+		\hyperpage{22}
+
+  \indexspace
+
+  \item N\IeC {\'u}mero Flutuante, \hyperpage{22}, \hyperpage{28}
+
+  \indexspace
+
+  \item PCI, \hyperpage{14}, \hyperpage{58}
+  \item PCI-E, \hyperpage{14}
+  \item Plot Increment, \hyperpage{23}
+  \item plotIncrement, \hyperpage{24}, \hyperpage{26}
+  \item portsListBox, \hyperpage{24}
+
+  \indexspace
+
+  \item receiveContinuous, \hyperpage{27}
+  \item receiveIsActive, \hyperpage{24, 25}
+  \item Refresh Ports, \hyperpage{24}
+  \item RxIRQ, \hyperpage{26, 27}
+
+  \indexspace
+
+  \item Sample Size, \hyperpage{24}
+  \item sampleContinuous, \hyperpage{24}, \hyperpage{26}
+  \item sampledSize, \hyperpage{24}, \hyperpage{26}
+  \item Save Screen, \hyperpage{24}
+  \item serialPort1, \hyperpage{24}
+  \item SPI, \hyperpage{31}
+  \item START, \hyperpage{24}
+  \item string, \hyperpage{28}
+  \item sysConnected, \hyperpage{24, 25}
+
+  \indexspace
+
+  \item threads, \hyperpage{27, 28}
+
+  \indexspace
+
+  \item updatePointsSize, \hyperpage{27}
+  \item USB, \hyperpage{14}
+
+  \indexspace
+
+  \item XX, \hyperpage{15}, \hyperpage{30}
+
+\end{theindex}

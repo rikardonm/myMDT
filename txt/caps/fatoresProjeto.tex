@@ -1,0 +1,112 @@
+\chapter{Fatores de Projeto}\label{cap:req}
+
+	\section{Requisitos}\label{sec:req:intro}
+
+		Requisitos funcionais e especificações de projeto afetam o desenvolvimento do \textit{hardware} e \textit{software}. Por exemplo, o requisito funcional de taxa de amostragem de um instrumento determina a característica de velocidade de transferência de dados. Esta característica, por sua vez, afeta a escolha da topologia de aquisição, e portanto os componentes adequados e o \textit{layout} apropriado. Esta característica, também, determina requisitos e limitações no \textit{software}, como a necessidade de maior poder de processamento, maior prioridade do programa executado ou uso de bibliotecas otimizadas.
+%	requisitos são atendidos, necessidades são satisfeitas
+%yes, it can be questioned. and no, this does not mean it has lost its valididy.
+
+
+		\section{Seleção de Topologia}\label{sec:req:hw:topologia}
+
+			A Figura \ref{img:sys:mine} expande o diagrama apresentado na Figura \ref{img:sys:blocks}, a partir de algumas considerações:
+
+			Sensores de efeito Hall e transformadores de corrente apresentam isolação inerente, sendo muitas vezes utilizados devido a esta característica aliada ao seu baixo custo. Entretanto, sensores de corrente por efeito Hall possuem faixa de operação fixa, reduzindo assim a possibilidade de maior precisão na medida de correntes menores. Os transformadores de corrente tradicionais não são capazes de medir CC, enquanto que os transformadores de corrente para este fim necessitam de circuitos auxiliares além de causar atrasos nas medidas realizadas. Em contra partida, não existem sensores isolados de tensão com componentes passivos (transformadores) ou integrados (efeito Hall) de baixo custo. Desta forma outros métodos de isolação são apresentados.
+
+			Na Figura \ref{img:sys:mine} A, B, C e D apresentam possíveis pontos em que os sinais podem ser isolados. Em A e B há a possibilidade de isolação de sinais analógicos por meio de acoplamento ótico, indutivo ou capacitivo e outros. Estes apresentam respostas não lineares, necessitando de circuitos auxiliares de retro-alimentação. Amplificadores isolados podem ser utilizados para a isolação destes sinais, porém da mesma forma que sensores Hall, possuem ganho de tensão fixo.
+
+			Em C e D, os sinais digitais podem ser facilmente isolados por componentes discretos ou CIs. Diferente de sinais analógicos, sinais digitais não são afetados por não linearidades. Esta característica é considerada vantajosa, porém a isolação no ponto C inviabiliza a utilização de uma referência de tensão compartilhada, enquanto a isolação no ponto D limita a conexão de vários módulos de aquisição ao mesmo sistema de controle.
+
+			Em instrumentos que apresentam alta taxa de amostragem, como osciloscópios portáteis, o custo do ADC é maior do que de um sistema de isolação analógico preciso, justificando assim a isolação no ponto B. Este tipo de topologia é apresentado em \cite[][p.5]{agilentChooseHandheldOsc}. Instrumentos que operam somente com uma entrada a cada momento, como multímetros, utilizam a isolação de comunicação no ponto D, como observado em \cite[][p.154]{dmm34401a}. Isto proporciona um melhor desempenho do ADC devido à menor quantidade de estágios e, portanto, não linearidades.
+
+			Entretanto, instrumentos que necessitam realizar medidas em mais de um referencial com baixas taxas de amostragem podem adotar a isolação no ponto C. Neste ponto a velocidade de transferência é baixa, o que reduz o custo do dispositivo isolador. Além disso, permite a utilização de um mesmo sistema de controle para diversos módulos, facilitando a expansão do sistema.
+
+			Em função destas características o circuito de medição será implementado com barreira de isolação na comunicação digital entre o ADC e o sistema de controle, ponto C.
+
+			\begin{figure}[h]
+				\caption{Organização em blocos do sistema proposto com barreiras de isolação}
+				\label{img:sys:mine}
+				\vspace{24pt}
+				\centering
+				\begin{tikzpicture}[block diagram, scale=1,
+									isol/.style={lightgray, line width=1.5pt, inner sep=0pt, shorten <=0pt}]
+				%\foreach \x in {-1,0,...,15}{
+				%	\foreach \y in {0,1,...,12}{
+				%		\node	at (\x,-\y) [circle, fill=red, ultra thin, inner sep=0.05cm] {};}}
+				\coordinate (ref)			at(0,0);
+				\node (real)	at (ref)	[red block] 		{Grandeza\\1};
+				\node (sensor)		[blue block, below=of real]		{Sensor};
+				\node (cond)		[blue block, right=of sensor]	{AMP};
+				\node (adc)			[blue block, right=of cond]		{A/D};
+				\node (conv)		[blue block, right=of adc]		{Sistema\\de\\Controle};
+				\node (meas)		[blue block, right=of conv]		{Apresentação\\dos\\Dados};
+				\node (barrn)		[text label]	at (13,0)	{Barreira\\de Isolação};
+				\draw [thick, ->, shorten <=0pt, shorten >= 0.2cm]	(barrn.south)		.. controls +(-1,-1) and +(1,0.5) .. (11,-1);
+				\draw				[isol]		(1.5,-1) 			-- +(0,-3)		node [text label, teal, below] {A};
+				\draw				[isol, dashed]		(1.5,-1)			-- +(-2.5,-3);
+				\draw				[isol]		(4.5,-1)		-- +(0,-3)		node [text label, teal, below] {B};
+				\draw				[isol]		(7.5,-1)		-- +(0,-3)		node [text label, teal, below] {C};
+				\draw				[isol]		(11,-1)		-- +(0,-3)		node [text label, teal, below] {D};
+				\node (adc2)		[blue block] at (7.5,-6)	{Módulo\\2};
+				\node (sens2)		[blue block, left=of adc2] {Sensor\\2};
+				\node (g2)			[red block, left=of sens2]		{Grandeza 2};
+				\node (adc3)		[blue block] at (7.5,-10)		{Módulo\\$n$};
+				\node (sens3)		[blue block, left=of adc3]	{Sensor\\$n$};
+				\node (g3)			[red block, left=of sens3]		{Grandeza $n$};
+				\draw [dashed, draw=black, line width=1pt] (2,-4) rectangle +(5,3) node [text label, above left] {Módulo 1};
+				\draw [thick, ->]	(real)		--		(sensor);
+				\draw [thick, ->]	(sensor)	--		(cond);
+				\draw [thick, ->]	(cond)		--		(adc);
+				\draw [thick, ->]	(adc)		--		(conv);
+				\draw [thick, ->]	(conv)		--		(meas);
+				\draw [thick, ->]	(g2)		--		(sens2);
+				\draw [thick, ->]	(sens2)		--		(adc2);
+				\draw [thick, ->]	(g3)		--		(sens3);
+				\draw [thick, ->]	(sens3)		--		(adc3);
+				\draw [thick, ->]	(adc2)		to[out=0, in=270]		(conv);
+				\draw [thick, ->]	(adc3)		to[out=0, in=270]		(conv);
+				\node [circle, fill=black, ultra thin, inner sep=1pt] at (7.5,-7.5) {};
+				\node [circle, fill=black, ultra thin, inner sep=1pt] at (7.5,-8) {};
+				\node [circle, fill=black, ultra thin, inner sep=1pt] at (7.5,-8.5){};
+				\end{tikzpicture}
+			\end{figure}
+
+
+		\section{Seleção de Componentes}\label{sec:req:hw:componentes}
+
+			A topologia determina quais componentes devem ser utilizados, e os requisitos de desempenho determinam as características dos componentes necessários. Estes são detalhados seguir.
+
+			O suporte de uma ampla faixa de entrada é realizado pela mudança de ganho do estágio amplificador. Isto pode ser realizado pela troca dos resistores da rede de amplificação. Amplificadores programáveis são construídos neste conceito com rede de resistores interna, controlada por uma interface digital. Além disso, para obtenção de menores ruídos e melhor precisão amplificadores de sinais diferenciais são necessários.
+
+			Pelos mesmos motivos, um ADC diferencial também deve ser utilizado. Este ADC deve apresentar uma referência de tensão interna com precisa, devido à sua utilização isolada. Além disso, o ADC necessita possuir um mecanismo de compensação de temperatura.
+
+			O circuito de controle deve possuir interfaces para a comunicação com diversos módulos e com o programa myGrapher. Também deve apresentar a capacidade de ser programado e configurado, afim de possibilitar a expansão de aplicações da plataforma. Uma destas é a capacidade da plataforma ser utilizada geração de eventos e acionamento de equipamentos a partir de um conjunto de condições.
+
+
+		\section{Projeto da PCI}\label{sec:req:hw:layout}
+
+			A correta disposição dos componentes utilizados é fundamental para a obtenção do melhor desempenho do projeto, bem como para a garantia de requisitos determinados previamente. Em relação ao projeto apresentado na seção \ref{sec:req:intro}, quando aplicável, cada um destes implica na utilização de metodologias, parâmetros e elementos no projeto da PCI.
+
+			Um projeto seguro, em termos de nível de isolação, é dependente nos componentes utilizados, bem como da PCI projetada. É recomendada a utilização de \textit{slots} entre circuitos ou componentes que apresentam alta diferença de potencial, o aumento da distância entre estes e inserção de \textit{guard traces}. Em casos que estas práticas não podem ser aplicadas, também é possível a aplicação de um gel sobre a PCI e os componentes, substituindo o ar por um material com constate dielétrica maior. Muito comum em equipamentos portáteis, como desfibriladores ou medidores de isolação, a aplicação do gel possibilita uma grande compactação do circuito.
+
+			A utilização de pares diferenciais, planos de potencial constante e \textit{guard traces} podem reduzir o ruído captado pelos circuitos, e assim podendo aumentar a precisão, assim como a utilização de trilhas com comprimento controlado pode proporcionar uma melhoria na precisão e exatidão medidas.
+
+			A confiabilidade de um sistema eletrônico é dependente nos estudos térmicos e de esforços mecânicos presentes. Desta forma, o projeto de PCIs deve levar em conta a dissipação de calor de componentes de potência, a massa e volume de todos os componentes e, portanto, os pontos de fixação. Também deve ser observado a resposta a vibrações e perturbações mecânicas ao sistema. Todos estes fatores afetam a robustez mecânica que o dispositivo projetado apresenta. A robustez elétrica afeta o projeto da PCI pela decisão de largura de trilhas, uma vez que isto determina a corrente máxima que a trilha suporta e o aumento de temperatura da PCI.
+
+			O custo de produção de uma PCI é diretamente proporcional a quantidade de camadas e área total. A área de uma PCI pode ser reduzida pela aproximação dos componentes, utilização de vias e, em muito comum em sistemas digitais, utilização de camadas internas. Uma análise da relação entre área e camadas deve ser realizada para a determinação de menor custo. Para circuitos de baixa complexidade o uso de uma ou duas camadas apresenta o menor custo e maior disponibilidade de fabricantes.
+
+			O posicionamento de componentes de interface é, muitas vezes, prioritário em relação a ao restante. Isto porque componentes de interface elétrica, como conectores, comumente devem ser posicionados na borda da placa. Já componentes de interface humana, devem ser posicionados de forma agrupada e intuitiva, muitas vezes apresentado uma disposição elétrica sub-ótima. Devido a estes fatores muitos projetos realizam o particionamento em PCIs sem interface humana e PCIs para este fim.
+
+
+		\section{Programa myGrapher}\label{sec:req:sw:pc}
+
+
+			Afim de atender o requisito de fácil utilização, o programa deve apresentar uma interface simples e compacta. O requisito de compatibilidade é atendido pela exportação dos dados recebidos. A interface de comunicação entre o sistema de controle e o programa deve ser realizada com o padrão USB devido a sua larga disponibilidade e grande compatibilidade. Em suma, o programa deve possuir os seguintes recursos:
+
+			\begin{itemize}\label{lst:swpc:req}
+				\item Apresentação dos dados de forma gráfica;
+				\item Exportação dos dados;
+				\item Controle da transferência de dados;
+				\item Captura de imagem do programa;
+				\item Apresentação de informações sobre a transferência realizada.
+			\end{itemize}

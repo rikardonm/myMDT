@@ -1,0 +1,178 @@
+\chapter{Introdução}\label{cap:intro}
+
+	\section{Contextualização}\label{sec:intro:intro}
+		Circuitos e sistemas comerciais de aquisição de dados são comumente empregados em atividades de pesquisa, como em \cite{spoonkillervideo}, para coleta de grande quantidade de dados. Estes sistemas existem nos mais diversos modelos e apresentam diversas configurações de sinais de entrada analógicos e digitais, e até sinais de saída. Também apresentam uma variedade de interfaces de comunicação (como USB, PCI, PCI-E, Ethernet) e integração com outras softwares (como Matlab\textsuperscript{\textregistered} e LabVIEW\textsuperscript{\textregistered}).
+		\index{Matlab\textsuperscript{\textregistered}}
+		\index{LabVIEW\textsuperscript{\textregistered}}
+		\index{USB}
+		\index{PCI}
+		\index{PCI-E}
+% for one thing, you should know that you don't know it all, even though it is fun to try.
+
+
+	\section{Objetivo do Trabalho}\label{sec:intro:objetivo}
+% apples and oranges, sheldon, apples and oranges
+
+		A Figura \ref{img:sys:whole} apresenta o diagrama conceitual de um sistema de medição isolado. O bloco Medida representa uma apresentação visual ou a transferência por comunicação digital da medida realizada. O processo de medição, abstraído, é representado pelo retângulo preto. A abstração permite uma análise dos sinais de entrada e de saída do processo, enumeração dos pré-requisitos que devem ser implementados no sistema e a previsão de escalabilidade do sistema.
+
+		\begin{figure}[h]
+			\caption{Diagrama de blocos simplificado - sistema de medição isolado}
+			\label{img:sys:whole}
+			\centering
+			\begin{tikzpicture}[block diagram]
+			\coordinate (barreira)		at(6,+3);
+			\coordinate (medicao)		at(6,-3);
+			\draw				[lightgray, line width=1.75pt]			(barreira) -- (medicao);
+			\node (real)		[red block] {Grandeza};
+			\node (sys)			[right=of real, rectangle, minimum width=7cm, fill=black!100, rounded corners=0.5cm, minimum height=2cm] {};
+			\node (meas)		[red block, right=of sys] {Medida};
+			%\node (sysname)		[text label, left=of medicao, xshift=1.5cm, yshift=+12pt]		{Sistema de Medição};
+			\node (iso)			[text label, right=of barreira, xshift=-1.5cm, yshift=-12pt]		{Barreira de Isolação};
+			\draw [thick, draw, ->]		(real)		--		(sys);
+			\draw [thick, draw, ->]		(sys)		--		(meas);
+			%\draw [thick, ->]			(sysname)		to [out=0, in=180]		($(((medicao) + (barreira))*0.75)$);
+			%\draw [thick, ->]			(iso)			to [out=180, in=0]		($(((medicao) + (barreira))*0.25)$);
+			\end{tikzpicture}
+		\end{figure}
+
+		O objetivo deste trabalho é o desenvolvimento do sistema de medição da Figura \ref{img:sys:whole}, composto por um \textit{hardware} de aquisição e por um \textit{software} de apresentação de dados.
+
+
+	\section{Divisão do Trabalho}\label{sec:intro:divisao}
+
+		\kant[2]
+		
+		\lipsum[3]
+
+
+	\section{Exemplo de ``A Completar''}
+
+		A inserção de \xx ou \XX insere no Índice a chave \{xx\}, marcador de itens que necessitam ser revisados.
+
+		\subsection{Exemplo de Quadro com Fonte}
+
+			O ganho do amplificador é controlado por um barramento paralelo de 5 bits, G0 a G4. A relação entre o ganho do amplificador e o valor do barramento apresentado no Quadro \ref{tab:hw:ganhos}.
+			
+			\begin{table}
+				\caption{Valores válidos para ganho do amplificador}
+				\label{tab:hw:ganhos}
+				\centering
+				\begin{tabular}{|c|c|c|}
+					\hline
+					\textbf{G3:G0}	&	\textbf{G4=0}			&	\textbf{G4=1}\\ 				\hline
+					0000			&	\nicefrac{1}{8} = 0,125	&	\nicefrac{11}{64} = 0,172\\		\hline
+					0001			&	\nicefrac{1}{4} = 0,25	&	\nicefrac{11}{32} = 0,344\\		\hline
+					0010			&	\nicefrac{1}{2} = 0,5	&	\nicefrac{11}{16} = 0,688\\ 	\hline
+					0011			&	1						&	\nicefrac{11}{8} = 1,375	\\	\hline
+					0100			&	2						&	\nicefrac{11}{4} = 2,75		\\	\hline
+					0101			&	4						&	\nicefrac{11}{2} = 5,5		\\	\hline
+					0110			&	8						&	11			\\ 					\hline
+					0111			&	16						&	22			\\ 					\hline
+					0110			&	32						&	44			\\ 					\hline
+					0111			&	64						&	88			\\ 					\hline
+					1000			&	128						&	176			\\ 					\hline
+				\end{tabular}
+				\adaptadode{\cite[][p.6]{spoonkillerwiki}}
+			\end{table}
+
+			\begin{table}
+				\caption{Comparativo de desempenho entre resistores}
+				\label{tab:proto:resistor2}
+				\centering
+				\begin{tabular}{|l|c|c|c|}
+					\hline
+					\textbf{Parâmetro}		&	\textbf{Resistores de Tensão}		&	\textbf{Resistor \textit{shunt}}		&	\textbf{Unidade}	\\
+					\hline
+					Tolerância		&	1\%	&	5\%	&			\\
+					\hline
+					Coeficiente
+					de Temperatura	&	$\pm$50	&	$\pm$225	&	$\frac{ppm}{\celsius}$	\\
+					\hline
+					Potência		&	0,6	&	3	&	Watts	\\
+					\hline
+					Temperatura
+					Máxima			&	155	&	70	&	\celsius	\\
+					\hline
+				\end{tabular}
+			\end{table}
+
+	\section{Exemplo de Fluxograma}
+
+		\begin{figure}[h!]
+			\caption{Fluxograma da função \textbf{consoleFxn}}
+			\label{img:hw:uc:console}
+			\centering
+			\begin{tikzpicture}[flow chart]
+			\node (start)	[start]	{Inicio da\\Tarefa};
+			\node (blan1)	[blank, below=of start]	{};
+			\node (input)	[decis, below=of blan1]	{Comando\\Recebido?};
+			\node (inyes)	[decis, right=of input]	{Comando\\exit?};
+			\node (exit)	[start, right=of inyes]	{Finaliza\\Tarefa};
+			\node (cmd)		[block, above=of inyes]	{Processa\\Comando};
+			\draw [thick, ->] (start)	--	(input);
+			\draw [thick, ->] (input)	--	node [text label, above] {Sim}	(inyes);
+			\draw [thick, ->, shorten >=0pt] (input.west)	-|	node [text label, above right] {Não}	+(-1,1)	|-	(blan1);
+			\draw [thick, ->] (inyes)	--	node [text label, above] {Sim}	(exit);
+			\draw [thick, ->] (inyes)	--	node [text label, right] {Não}	(cmd);
+			\draw [thick, ->, shorten >=0pt] (cmd)	--	+(-3,0)	|-	(blan1);
+			\end{tikzpicture}
+		\end{figure}
+
+
+	\section{Exemplo de Diagrama de Ligação Simples}
+
+	\begin{figure}[h!]
+		\caption{Circuito de medição do protótipo}
+		\label{img:proto:meas2}
+		\centering
+		\begin{tikzpicture}[scale=1.0, 
+		point/.style={circle, fill=black, ultra thin, inner sep=0.05cm},
+		inout/.style={circle, draw, radius=4pt, thick}, 
+		meter/.style={circle, draw, minimum size=1cm, align=center, thick}]
+		\node (inneg) at (0,0)	[inout]	{};
+		\node (inpos) at (0,4) [inout]	{};
+		\node (ampneg) at (3,0) [meter] {A};
+		\node (amppos) at (3,4) [meter] {A};
+		\node (volt) at (5,2) [meter] {V};
+		\node (ptneg) at (5,0) 	[point] {};
+		\node (ptpos) at (5,4)	[point] {};
+		\node (outneg) at (9,0)	[inout]	{};
+		\node (outpos) at (9,4)[inout] {};
+		\draw (inneg) node [text label, above] {Entrada\\(-)} -- (ampneg) -- (ptneg) -- (outneg) node [text label, above] {Saída\\(-)};
+		\draw (inpos) node [text label, below] {Entrada\\(+)} -- (amppos) -- (ptpos) -- (outpos) node [text label, below] {Saída\\(+)};
+		\draw (volt) -- (ptneg);
+		\draw (volt) -- (ptpos);
+		\draw (1,-1) 
+		rectangle (7,5) 
+		[dashed, draw=black, line width=1pt];
+		\end{tikzpicture}
+	\end{figure}
+
+	\section{Algumas Equações}
+
+		As medidas foram obtidas com a aplicação de um sinal CC com nível variável, controlado pela fonte de alimentação. Os ganhos dos amplificadores dos módulos de tensão e corrente, durante todo o experimento, foram fixados em 1 e 176, respectivamente. As sensibilidades resultantes são de 116,718\sci{-6} V para tensão e 0,298\sci{-6} A para corrente, calculadas por \eqref{eq:sensibility}. Ao comparar os valores de sensibilidade e incerteza obtém-se que para tensão esta relação é de 1,25 e para corrente é de 1,56.
+		
+		\begin{align}
+		\label{eq:sensibility}
+		Sensibilidade &= \frac{1}{Ganho_{Sensor}} \cdot \frac{1}{Ganho_{AMP}} \cdot \frac{ADC_{range}}{2^{ADC_{bits}}}	\\[24pt]
+		Sens\quad Tens\tilde{a}o &= \frac{29.9965}{0.076592} \cdot \frac{1}{1} \cdot \frac{5}{2^{24}} = 116,718\mu V		\\[24pt]
+		Sens\quad Corrente &= \frac{1}{0.0003} \cdot \frac{1}{176} \cdot \frac{5}{2^{24}} = 5,644\mu A
+		\end{align}
+
+		E depois mais equações abaixo:
+
+		\begin{align}
+		Bits\quad V\acute{a}lidos &= Bits_{ADC} - log_2\left(\frac{max(ruido_{RMS})}{Sensibilidade}\right)	\label{eq:validbits}	\\[12pt]
+		Tens\tilde{a}o 			&= 24 - log_2\left(\frac{0,043873}{116,71\mu}\right) \\
+		&= 15,44	\label{eq:voltbits}						\\[12pt]
+		Corrente				&= 24 - log_2\left(\frac{0,0034696}{5,6443\mu}\right) \\
+		&= 14,73	\label{eq:currbits}
+		\end{align}
+
+		E ainda outras:
+
+		\begin{equation}
+		\label{eq:sensgain}
+		\Delta Sens = \frac{\frac{1}{Ganho_{Sensor}} \cdot \frac{1}{Ganho_{AMP}} \cdot \frac{ADC_{range}}{2^{ADC_{bits}}}}{\frac{1}{Ganho_{Sensor}} \cdot \frac{1}{Ganho_{AMP}} \cdot \frac{ADC_{range}}{2^{ADC_{bitsNew}}}} = \frac{2^{ADC_{bits}}}{2^{ADC_{bitsNew}}} = 2^{ADC_{bits} - ADC_{bitsNew}}
+		\end{equation}
+

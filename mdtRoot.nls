@@ -1,0 +1,61 @@
+\begin{thenomenclature} 
+
+ \nomgroup{A}
+
+  \item [{A/D}]\begingroup Analógico/Digital\nomeqref {0}
+		\nompageref{1}
+  \item [{ADC}]\begingroup Conversor Analógico - Digital\nomeqref {0}
+		\nompageref{1}
+  \item [{AMP}]\begingroup Amplificador\nomeqref {0}\nompageref{1}
+  \item [{ASCII}]\begingroup do inglês \textit{American Code for Information Interchange}\nomeqref {0}
+		\nompageref{1}
+  \item [{CA}]\begingroup Corrente Alternada\nomeqref {0}\nompageref{1}
+  \item [{CC}]\begingroup Corrente Contínua\nomeqref {0}\nompageref{1}
+  \item [{CI}]\begingroup Circuito Integrado\nomeqref {0}\nompageref{1}
+  \item [{CSV}]\begingroup do inglês \textit{Comma Separated Values}\nomeqref {0}
+		\nompageref{1}
+  \item [{DTR}]\begingroup do ingles \textit{Data Terminal Ready}\nomeqref {0}
+		\nompageref{1}
+  \item [{GDT}]\begingroup do inglês \textit{Gas Discharge Tube}\nomeqref {0}
+		\nompageref{1}
+  \item [{IDE}]\begingroup do inglês \textit{Integrated Development Environment}\nomeqref {0}
+		\nompageref{1}
+  \item [{IEC}]\begingroup do inglês \textit{International Eletrotechnical Comission}\nomeqref {0}
+		\nompageref{1}
+  \item [{IG}]\begingroup Interface Gráfica\nomeqref {0}\nompageref{1}
+  \item [{IRQ}]\begingroup do inglês \textit{Interrupt Request}\nomeqref {0}
+		\nompageref{1}
+  \item [{kB}]\begingroup kilo bytes\nomeqref {0}\nompageref{1}
+  \item [{kBps}]\begingroup do inglês \textit{Kilo Bytes Per Second}\nomeqref {0}
+		\nompageref{1}
+  \item [{kSa/s}]\begingroup sinônimo de kSPS\nomeqref {0}
+		\nompageref{1}
+  \item [{LCR}]\begingroup Indutância, Capacitância e Resistência\nomeqref {0}
+		\nompageref{1}
+  \item [{Mbps}]\begingroup do inglês \textit{Mega Bits Per Second}\nomeqref {0}
+		\nompageref{1}
+  \item [{MSa/s}]\begingroup sinônimo de MSPS\nomeqref {0}
+		\nompageref{1}
+  \item [{PC}]\begingroup do inglês \textit{Personal Computer}\nomeqref {0}
+		\nompageref{1}
+  \item [{PCI}]\begingroup Placa de Circuito Impresso\nomeqref {0}
+		\nompageref{1}
+  \item [{RTOS}]\begingroup do inglês \textit{Real Time Operating System}\nomeqref {0}
+		\nompageref{1}
+  \item [{Sa/s}]\begingroup sinônimo de SPS\nomeqref {0}\nompageref{1}
+  \item [{SO}]\begingroup Sistema Operacional\nomeqref {0}
+		\nompageref{1}
+  \item [{SPI}]\begingroup do inglês \textit{Serial Peripheral Interface}\nomeqref {0}
+		\nompageref{1}
+  \item [{TI--RTOS}]\begingroup do inglês \textit{Texas Instruments Real Time Operation System}\nomeqref {0}
+		\nompageref{1}
+  \item [{TVS}]\begingroup do inglês \textit{Transition Voltage Supressor}\nomeqref {0}
+		\nompageref{1}
+  \item [{TXCO}]\begingroup do inglês \textit{Temperature Compensated Crystal Oscillator}\nomeqref {0}
+		\nompageref{1}
+  \item [{USB--CDC}]\begingroup do inglês \textit{USB -- Comunications Device Class}\nomeqref {0}
+		\nompageref{1}
+  \item [{USB--OTG}]\begingroup do inglês \textit{USB On--The--Go}\nomeqref {0}
+		\nompageref{1}
+
+\end{thenomenclature}

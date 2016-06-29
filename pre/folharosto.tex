@@ -1,0 +1,34 @@
+%faz-se a folha rosto
+\begin{folharosto}
+	\centering
+	\fonte{12}
+	{\bfseries\autor}\par
+	\vspace{84pt}
+	\onehalfspacing
+	\fonte{12}
+	\textsc{\bfseries\tituloTrabalho}\par
+	
+	\vspace*{\fill} 
+	\begin{adjustwidth}{0.5\textwidth}{}
+		\fonte{12}
+		\justifying
+		\singlespacing
+		\textoFolhaRosto\ \textbf{\grauFolhaRosto}.\par
+	\end{adjustwidth}
+	\vspace*{\fill}
+
+	\centering
+	\vspace{120pt}
+	\onehalfspacing
+	\orientadorGenero : \orientadorTitulo\ \orientador\par
+	\ifcoorientador
+		Co-Orientador: \bancaUmTitulo\ \bancaUm\par
+	\else
+	\fi
+	
+	%bottom of page
+	\vfill
+	\fonte{12}
+	\cidadeCEP\par
+	\ano\par
+\end{folharosto}

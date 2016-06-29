@@ -1,0 +1,61 @@
+%faz-se a folha rosto
+\begin{folhaaprovacao}
+	\setlength{\headheight}{15pt}
+	\centering
+	\fonte{12}
+	{\bfseries\autor}\par
+	\vspace{84pt}
+	\onehalfspacing
+	\fonte{12}
+	\textsc{\bfseries\tituloTrabalho}\par
+	
+	\vspace*{\fill} 
+	\begin{adjustwidth}{0.5\textwidth}{}
+		\fonte{12}
+		\justifying
+		\singlespacing
+		\textoFolhaRosto\ \textbf{\grauFolhaRosto}.\par
+	\end{adjustwidth}
+	\vspace*{\fill}
+
+	\centering
+	\vspace{48pt}
+	% texto com nomes da banca
+	\fonte{12}
+	\textbf{Aprovado em \diaDefesa\ de\ \mesDefesa\ de\ \ano:}\par
+	
+	\vspace{48pt}
+	\linethickness{1.75pt}
+	\line(1,0){275}\par
+	\textbf{\orientador , \orientadorTitulo\ (\universidadeSigla)}\par
+	(Presidente/Orientador)
+	
+	\vspace{18pt}
+	\line(1,0){275}\par
+	\textbf{\bancaUm , \bancaUmTitulo\ (\bancaUmSigla)}\par
+	\ifcoorientador
+		{(Co-Orientador)}
+	\fi
+	
+	\vspace{18pt}
+	\line(1,0){275}\par
+	\textbf{\bancaDois , \bancaDoisTitulo\ (\bancaDoisSigla)}\par
+
+	\ifbancaTresExiste
+	{\vspace{18pt}\line(1,0){275}\par
+	\textbf{\bancaTres\ , \bancaTresTitulo (\bancaTresSigla)}\par}
+	\else
+	\fi
+	
+	\ifbancaQuatroExiste
+	{\vspace{18pt}\line(1,0){275}\par
+	\textbf{\bancaQuatro\ , \bancaQuatroTitulo (\bancaQuatroSigla)}\par}
+	\else
+	\fi
+	
+	%bottom of page
+	\vfill
+	\fonte{12}
+	\cidadeCEP\par
+	\ano\par
+\end{folhaaprovacao}

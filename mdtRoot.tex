@@ -1,0 +1,115 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                                      %%%
+%%%             Switches   -> DEF.       %%%
+%%%                                      %%%
+%%%          NAO MODIFICAR               %%%
+%%%                                      %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newif\ifduplaFace			\duplaFacefalse
+\newif\iflombadaNaCapa		\lombadaNaCapafalse
+
+\newif\ifcoorientador		\coorientadorfalse
+\newif\ifbancaTresExiste	\bancaTresExistefalse
+\newif\ifbancaQuatroExiste	\bancaQuatroExistefalse
+
+\newif\ifdebug				\debugtrue
+
+\input{txt/cnf/configuracoes}
+
+\ifduplaFace
+	\ifdebug
+		\documentclass[openright,12pt,twoside,draft, a4paper]{report}
+	\else
+		\documentclass[openright,12pt,twoside,a4paper]{report}
+	\fi
+\else
+	\ifdebug
+		\documentclass[openright,12pt,oneside,draft,a4paper]{report}
+	\else
+		\documentclass[openright,12pt,oneside,a4paper]{report}
+	\fi
+\fi
+
+% chama estilo, apos config. iniciais
+\usepackage{mymdt}
+
+\input{txt/cnf/titulos}
+\input{txt/cnf/bibliografias}
+\input{txt/cnf/nomenEsimbolos}
+
+\begin{document}
+
+	\input{pre/capa}
+	\input{pre/folharosto}
+	%\include{pre/fichacatalografica}	% no need, no do
+	%\include{pre/errata}				% no need, no do
+	\input{pre/folhaaprovacao}
+
+	\begin{dedicatoria}
+	\input{txt/cnf/dedicatoria}
+	\end{dedicatoria}
+
+	\begin{agradecimentos}
+	\input{txt/cnf/agradecimentos}
+	\end{agradecimentos}
+
+	\begin{epigrafe}
+	\input{txt/cnf/epigrafe}
+	\end{epigrafe}
+
+	\begin{resumo}
+
+	\input{txt/cnf/resumo}
+	\end{resumo}
+
+	\begin{myabstract}
+	\input{txt/cnf/abstract}
+	\end{myabstract}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%		LISTAS
+	\include{pre/listas}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%		CHAPTER 1
+	\include{txt/caps/introducao}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%		CHAPTER 2
+	\include{txt/caps/revisaobib}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%		CHAPTER 3
+%	\include{txt/caps/fatoresProjeto}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%		CHAPTER 4
+%	\include{txt/caps/projetoHardware}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%		CHAPTER 5
+	\include{txt/caps/projetoSoftware}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%		CHAPTER 6
+%	\include{txt/caps/prototipos}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%		CHAPTER 7
+	\include{txt/caps/conclusao}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%		REFERENCIAS
+	\include{pos/referencias}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\apendices
+	\input{txt/caps/apendices}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\anexos
+	\input{txt/caps/anexos}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\input{pos/indice}
+\end{document}

@@ -1,0 +1,938 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}					% acentuação
+\usepackage[utf8]{inputenc}					% acentuacao tbm?
+\DeclareUnicodeCharacter{FEFF}{ }			% define BOM (byte order mask) como espaç nulo
+\DeclareUnicodeCharacter{20B3B}{ }			% nem idéia
+\DeclareUnicodeCharacter{BD}{1/2}			% don't even care anymore
+\usepackage[brazilian]{babel}				% troca a lingua para ptg
+\usepackage{letltxmacro}					% redefinição segura de comandos nativos
+\usepackage{kantlipsum}						% textos do kant
+\usepackage{lipsum}							% textos em latim
+\usepackage{blindtext}						% dummy text
+\usepackage[nomessages]{fp}					% supostamente para fazer cálculos na hora de compilar
+\usepackage{calc}							% habilita cálculos no script
+\usepackage{mathptmx}						% troca a fonte para times
+\usepackage{amsmath}						% uu, fancy equations
+%\usepackage{fontspec}						% troca a fonte para times, nao funciona com pdftex
+\usepackage{geometry}						% define layout (margem)
+
+% debugging tools
+\ifdebug
+\usepackage{showframe}						% mostra bordas de margem
+\usepackage{showidx}						% mostra as entradas do indice
+\fi
+
+\usepackage{setspace}						% usado para entre-linhas
+%\usepackage{rotating}						% lombada na capa
+\usepackage{boxedminipage}					% lombada na capa
+\usepackage{ragged2e}						% justify
+\usepackage{changepage}						% margens especiais em blocos de texto	
+\usepackage{titlesec}						% muda o estilo do titulo do capitulo
+
+\usepackage{tocloft}						% estilo TOC
+\usepackage[nottoc,notlof,
+			notlot]{tocbibind}				% adiciona referencias no sumario
+
+\usepackage{imakeidx}						% para indice final geral
+%\usepackage{makeidx}						% simple version?
+\usepackage{nomencl}						% utilizado para simbolos			
+\usepackage[pdfauthor={Ricardo N. Marchesan},
+			linktoc=all,
+			colorlinks,
+			citecolor=cyan,
+			linkcolor=cyan,
+			menucolor=cyan
+			]{hyperref}						% habilita links no TOC
+
+\usepackage{fancyhdr}						% modificação header/footer
+\usepackage{indentfirst}					% indenta primeiro parágrafo depois de chapter, section, subsection
+%\usepackage{tocstyle}						% gera índice customizado
+\usepackage{csquotes}						% junto com biblatex, para quotes
+\usepackage{etoolbox}						% pre and after command
+\usepackage[backend=biber,
+			style=mymdt,
+%			style=abnt,
+			firstinits=true,
+			isbn=false,
+			maxbibnames=99,
+			sorting=nyt,
+			related=false,
+			sortcites=true,
+			hyperref=true]{biblatex}		% a ver com referencias
+\usepackage{bookmark}						% links no pdf
+\usepackage{enumitem}						% configuracoes das listas
+\usepackage[final]{pdfpages}				% para incluir arquivos pdf
+\usepackage{chngcntr}						% change counters
+\usepackage{caption}						% muda nomes de legendas
+\usepackage[export]{adjustbox}				% alinhamento de imagens (right, left, center..)
+%\usepackage[titletoc]{appendix}				% configura apendices e anexos
+%\usepackage{multind}						% indices e glossarios
+% \usepackage[acronym]{glossaries}			% lista de abreviações - not useful, need perl
+\usepackage{acro}							% para lista de abreviacoes
+\usepackage{tikz}							% desenha fluxogramas
+\usetikzlibrary{matrix,
+%				shape.geometric,
+%				shape.misc,
+				shapes,
+				arrows,
+				positioning,
+				chains,
+				calc,
+				shadows}	% package options
+%\usepackage{circuitikz}						% desenha circuitos, derivação de tikz. estraga shape=diamond
+\usepackage{subcaption}						% usado para multiplas figuras dentro de um unico float
+%\usepackage{tabu}							% modifica opções de tabela
+%\usepackage{fancyvrb}						% inclusão de textos dentro de arquivos verbatim
+\usepackage{listings}						% mesma coisa que o anterior
+\usepackage{listingsutf8}					% corrige acentuacao no listings
+\usepackage{xcolor}							% inserir cor no texto
+\usepackage{tcolorbox}						% inserir caixas com cor no fundo
+\usepackage{units}							% unidades e fracoes em uma linha
+\usepackage{multirow}						% celulas com varias linhas em tabelas
+\usepackage{siunits}						% unidades do SI, como celsius
+%\usepackage[scientific-notation=true]
+%			{siunitx}						% unidades, all over again
+%\usepackage{gensymb}						% again, simbolos e unidades
+\usepackage{makecell}						% head de tabelas e celulas com quebra de linha
+\usepackage{array}							% modifica celulas na tabela
+\usepackage[section]{placeins}				% força figuras dentro de subseções
+\usepackage{emptypage}						% tira o número da página em branco
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                                      %%%
+%%%                                      %%%
+%%% Máscara para as varáveis do trabalho %%%
+%%%                                      %%%
+%%%                                      %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\universidade}				{Universidade Federal de Santa Maria}
+\newcommand{\universidadeSigla}			{UFSM}
+\newcommand{\centroCurso}				{Centro de Tecnologia}
+\newcommand{\departamentoPrograma}		{Curso de Engenharia Elétrica}
+\newcommand{\departamentoProgramaSigla}	{\@empty}
+\newcommand{\grauTrabalho}				{trabalho de conclusão de curso}
+\newcommand{\grauTitulacao}				{Engenheiro}
+\newcommand{\cidadeCEP}					{Santa Maria, RS, Brasil}
+\newcommand{\estadoCEP}					{RS}
+
+\newcommand{\textoFolhaRosto}			{Trabalho de Conclusão de Curso apresentado à Coordenação do \departamentoPrograma\ da \universidade\ (\universidadeSigla , \estadoCEP), como requisito parcial para a obtenção do grau de}
+\newcommand{\grauFolhaRosto}			{Engenheiro Eletrecista}
+
+%% infos sobre o trabalho
+\newcommand{\autor}						{Ricardo Nunes Marchesan}
+\newcommand{\autorCitacao}				{Marchesan, Ricardo Nunes}
+\newcommand{\autorGenero}				{Autor}
+\newcommand{\ano}						{2016}
+\newcommand{\diaDefesa}					{57}
+\newcommand{\mesDefesa}					{janeiro}
+
+\newcommand{\tituloTrabalho}			{Plataforma Física para Sistemas Isolados de Medição de Tensão e Corrente de Alta Fidelidade}
+
+\newcommand{\tituloTrabalhoEn}			{High Fidelity Isolated Hardware Framework for Voltage and Current Measurement}
+
+
+\newcommand{\orientador}				{Alysson R. Seidel}
+\newcommand{\orientadorGenero}			{Orientador}
+\newcommand{\orientadorTitulo}			{Prof. Dr.}
+
+
+\newcommand{\bancaUm}					{fulaninho}
+\newcommand{\bancaUmSigla}				{UFSM}
+\newcommand{\bancaUmTitulo}				{crapper}
+\coorientadortrue
+
+
+\newcommand{\bancaDois}					{ciclaninho}
+\newcommand{\bancaDoisSigla}			{KCUF}
+\newcommand{\bancaDoisTitulo}			{master}
+
+
+\newcommand{\bancaTres}					{fuck this shit}
+\newcommand{\bancaTresSigla}			{DISH}
+\newcommand{\bancaTresTitulo}			{tihs}
+
+\newcommand{\bancaQuatro}				{fuck this shit}
+\newcommand{\bancaQuatroSigla}			{DISH}
+\newcommand{\bancaQuatroTitulo}			{tihs}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Command Masks
+% redefine as varáveis iniciais
+	\newcommand{\set}[2]{\renewcommand{#1}{#2}}
+	
+% troca fonte do texto
+	\newcommand{\fonte}[1]{\fontsize{#1}{#1}\selectfont}
+	
+% switch para face simples ou face dupla
+	\ifduplaFace
+		\newcommand{\oddpage}{\cleardoublepage}
+		\newcommand{\doislados}{\newgeometry{inner=30mm,outer=20mm,top=30mm,bottom=20mm,twoside,a4paper}}
+		\newcommand{\cabecalho}{\fancyhead[LE,OR]{\fonte{10}\thepage}}
+	\else
+		\newcommand{\oddpage}{\clearpage}
+		\newcommand{\doislados}{\null}
+		\newcommand{\cabecalho}{\rhead{\fonte{10}\thepage}}
+	\fi
+
+\renewcommand{\cftchapfont}{\bfseries\scshape}
+\renewcommand{\cftsecfont}{\scshape}
+\renewcommand{\cftsubsecfont}{\scshape}
+\renewcommand{\cftfigfont}{\scshape}
+\renewcommand{\cfttabfont}{\scshape}
+\renewcommand{\cftchapfont}{\scshape}
+\renewcommand{\cftchappagefont}{\normalfont}
+
+
+
+		
+% espaçamento entre linhas na tabela
+\renewcommand{\arraystretch}{1.5}
+
+
+
+\makeindex
+\makenomenclature
+
+
+
+% manual nomenclature description
+% copy code from secao sem numero
+\def\thenomenclature{%
+		\cleardoublepage
+		\setlength{\headheight}{15pt}
+		\onehalfspacing
+		\fonte{12}
+		\vspace{18pt}%
+		\centering
+		\textbf{LISTA DE ABREVIATURAS E SIGLAS}\par%
+		\vspace{18pt}
+\nompreamble
+\list{}{%
+	\labelwidth\nom@tempdim%
+	\leftmargin\labelwidth%
+	\advance\leftmargin\labelsep%
+	\itemsep\nomitemsep%
+	\let\makelabel\nomlabel}}
+\def\endthenomenclature{%
+	\endlist
+	\nompostamble}
+
+
+	
+
+		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para seções com numeração
+%\LetLtxMacro{\oldchapter}{\chapter}
+%\renewcommand{\chapter}[1]{
+%		\setlength{\headheight}{15pt}
+%		\onehalfspacing
+%		\oldchapter{\textsc{#1}}
+%		\justifying
+%		\parindent=1.25cm
+%		}
+		
+		
+% formatacao estilo titulo secoes
+	\titleformat{\section}%
+		[display]%
+		{\normalfont}%
+		{\@empty}%
+		{0pt}%
+		{\fonte{12}\scshape\raggedright\thesection\ }
+		%[\justifying\parindent=1.25cm]
+		
+	\titlespacing{\section}
+		{0pt}{0pt}{12pt}
+
+% formatacao do estilo subsecos
+	\titleformat{\subsection}
+		[display]
+		{\normalfont}
+		{\@empty}
+		{0pt}
+		{\bfseries\fonte{12}\raggedright\thesubsection\ }
+		%[\justifying\parindent=1.25cm]
+
+	\titlespacing{\subsection}
+		{0pt}{0pt}{12pt}
+		
+
+% formatacao para ilustracoes e tabelas
+	\setlength{\cftbeforeloftitleskip}{-14pt}
+	\setlength{\cftafterloftitleskip}{18pt}
+	
+	\setlength{\cftbeforelottitleskip}{-14pt}
+	\setlength{\cftafterlottitleskip}{18pt}
+	
+	\counterwithout{figure}{chapter}
+	\counterwithout{table}{chapter}
+	
+	\captionsetup[figure]{format=plain, format=hang, labelformat=simple, labelsep=endash, font=small, position=top, name=Figura, aboveskip=18pt, belowskip=12pt, singlelinecheck=off}
+	\captionsetup[table]{format=plain, format=hang, labelformat=simple, labelsep=endash, font=small, position=top, name=Quadro, aboveskip=18pt, belowskip=12pt, singlelinecheck=off}
+	\captionsetup[subfigure]{format=plain, format=hang, labelformat=simple, labelsep=endash, font=small, position=top, aboveskip=12pt, belowskip=12pt, singlelinecheck=off}
+	% adiciona parenteses na referencia de subfiguras, tipo Fig. 1(a)
+	\renewcommand\thesubfigure{(\alph{subfigure})}
+
+	% alinhamento da lista de figuras
+	\setlength{\cftfigindent}{0pt}
+	\setlength{\cfttabindent}{0pt}
+
+	% configura alinhamento dos itens numerados no toc
+	% \setlength{\cftchapindent}{0pt}
+	% \setlength{\cftsecindent}{0pt}
+	% \setlength{\cftsubsecindent}{0pt}
+	% \setlength{\cftsubsubsecindent}{0pt}
+	% configura largura da numeracao no toc
+	% \setlength{\cftchapnumwidth}{0pt}
+	% \setlength{\cftsecnumwidth}{0pt}
+	% \setlength{\cftsubsecnumwidth}{0pt}
+	% \setlength{\cftsubsubsecnumwidth}{0pt}
+
+	\newlength{\indiceOffset}\setlength{\indiceOffset}{1.5cm}
+	\cftsetindents{chapter}{0pt}{\indiceOffset}
+	\cftsetindents{section}{0pt}{\indiceOffset}
+	\cftsetindents{subsection}{0pt}{\indiceOffset}
+	\cftsetindents{subsubsection}{0pt}{\indiceOffset}
+	
+
+
+	% formata figuras env.
+%	\let\oldfigure\figure
+%	\let\oldendfigure\endfigure
+%	\renewenvironment{figure}{\oldfigure\centering}{\oldendfigure}
+
+% lista de tabelas
+\newcommand{\listadetabelas}{
+	\renewcommand{\numberline}{\textsc{Quadro}~\oldnumberline}
+	\cleardoublepage
+	\renewcommand{\listtablename}{\bfseries\hfill\fonte{12} LISTA DE QUADROS \hfill}
+	\listoftables}
+
+
+% lista de figuras
+\newcommand{\listadefiguras}
+{%
+	\renewcommand{\numberline}{\figurename~\oldnumberline}
+	\cleardoublepage
+	\renewcommand{\listfigurename}{\bfseries\hfill\fonte{12} LISTA DE FIGURAS \hfill}
+	\listoffigures}
+	
+% lista de simbolos
+\newcommand{\listadesimbolos}{%
+	\cleardoublepage
+	\DeclareInstance{acro-title}{empty}{sectioning}{name-format =}
+	\begin{secaosemnumero}{LISTA DE SÍMBOLOS}
+		\acsetup{list-short-width={3cm}, list-style=tabular}
+		\printacronyms[heading=empty]
+	\end{secaosemnumero}}
+	
+	
+		
+% formata referencias
+	%\defbibheading{referencias}[Referências]{\chapter*{}}
+	\setlength{\bibhang}{0pt}
+	\setlength{\bibparsep}{12pt}
+	
+% formata citacao
+	\renewcommand*{\nameyeardelim}{\addcomma\addspace}
+% formata referencias	
+	\DeclareFieldFormat*{title}{#1}
+	\DeclareFieldFormat*{citetitle}{#1}
+
+	
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para seções sem numeração
+\newenvironment{secaosemnumero}[1]
+	{%
+		\setlength{\headheight}{15pt}
+		\onehalfspacing
+		\fonte{12}
+		\vspace{18pt}%
+		\centering
+		\textbf{#1}\par%
+		\vspace{18pt}
+	}
+	{
+		%\oddpage
+	}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Fixed initial text configurations
+\geometry{%
+	a4paper,%configura folha A4 padrão
+	top=30mm,%configura margem superior
+	bottom=20mm,%conf. margem inf.
+	left=30mm,%3cm margem esquerda
+	right=20mm%2cm margem direita
+	}
+
+%	\parindent=0pt
+%	\hangindent=0pt
+
+	\pagestyle{fancyplain}
+	\fancyhf{}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+
+	%\fontspec{Times New Roman}
+	%\setlist[description]{leftmargin=\parindent,labelindent=\parindent}
+	\setlist[description]{labelindent=\parindent,leftmargin=2\parindent+1.5cm,
+			topsep=0pt, partopsep=12pt, parsep=0pt, itemsep=0pt,%
+			rightmargin=2\parindent, listparindent=\parindent, labelwidth=1.5cm}
+	\setlist[itemize]{leftmargin=\parindent,labelindent=2\parindent+1.5cm,
+			topsep=0pt, partopsep=12pt, parsep=0pt, itemsep=0pt,%
+			rightmargin=2\parindent, listparindent=\parindent}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% capa não tem mascara
+\newenvironment{capa}
+	{
+		%\pagestyle{plain}
+		%\begin{titlepage}
+		%\setlength{\parindent}{0pt}
+		%\setlength{\hangingindent}{0pt}
+	}
+	{
+		%\end{titlepage}
+	}  	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para folha rosto
+\newenvironment{folharosto}
+	{
+		\oddpage
+		\setcounter{page}{1}
+	}
+	{
+		%\oddpage
+	}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para folha aprovacao
+\newenvironment{folhaaprovacao}
+	{
+		\oddpage
+	}
+	{
+		%\oddpage
+	}	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para dedicatoria
+\newenvironment{dedicatoria}
+	{%
+		\oddpage
+		\begin{secaosemnumero}{DEDICATÓRIA}
+		\vspace*{\fill}
+		\begin{itshape}
+		\parindent=0pt
+		\hspace{0.2\textwidth}
+		\begin{minipage}{0.6\textwidth}
+		\centering
+	}
+	{%
+		\end{minipage}
+		\end{itshape}
+		\vspace*{\fill}
+		\end{secaosemnumero}
+		%\oddpage
+	}	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para agradecimentos
+\newenvironment{agradecimentos}
+	{%
+		\oddpage
+		\begin{secaosemnumero}{AGRADECIMENTOS}
+		\begin{itshape}%
+		\justifying
+		\parindent=12.5mm
+		\singlespacing
+	}
+	{%
+		\end{itshape}
+		\end{secaosemnumero}
+		%\oddpage
+	}	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para epígrafe
+\newenvironment{epigrafe}
+	{
+		\oddpage
+		\justifying
+		\begin{itshape}
+		\parindent=0pt
+		\par
+		\null
+		\vfill
+		\onehalfspacing
+		\raggedleft
+	}
+	{
+		\end{itshape}
+		%\oddpage
+	}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para resumo
+\newenvironment{resumo}
+	%start command
+	{%
+		\oddpage
+		\singlespacing
+		\begin{secaosemnumero}{RESUMO}
+		\vspace{6pt}
+		\textsc{\textbf{\tituloTrabalho}}\par
+		\vspace{24pt}
+		\textsc{\autorGenero}\ :\ \autor\par
+		\textsc{\orientadorGenero}\ :\ \orientador\ \orientadorTitulo\par
+		\ifcoorientador
+			CO-ORIENTADOR: \bancaUm, \bancaUmTitulo\par
+		\else
+		\fi
+		\vspace{24pt}
+		\justifying
+		\singlespacing
+		\fonte{10}
+		\parindent=0pt
+		\hangindent=0pt
+	}
+	%end command
+	{
+		\end{secaosemnumero}
+	}
+	
+	% mascara para palavras chave
+	\newcommand{\keywords}[1]
+	{
+		\vspace{18pt}
+		\textbf{#1:\ }
+	}
+
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para abstract
+\newenvironment{myabstract}
+	%start command
+	{
+		\oddpage
+		\singlespacing
+		\begin{secaosemnumero}{ABSTRACT}
+		\vspace{6pt}
+		\textsc{\textbf{\tituloTrabalhoEn}}\par
+		\vspace{24pt}
+		AUTHOR : \autor\par
+		ADVISOR: \orientadorTitulo\ \orientador\par
+		\ifcoorientador
+			SUB-ADVISOR: \bancaUmTitulo\ \bancaUm\par
+		\else
+		\fi
+		\vspace{24pt}
+		\justifying
+		\singlespacing
+		\fonte{10}
+		\parindent=0pt
+		\hangindent=0pt
+	}
+	%end command
+	{
+		\end{secaosemnumero}
+		\doislados
+	}  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para lista de figuras
+\let\oldnumberline\numberline
+\newenvironment{ilustracoes}
+	{
+
+	}%
+	{
+	}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para sumario
+\newcommand{\sumario}{%
+	\renewcommand{\numberline}{\oldnumberline}
+	\cleardoublepage
+	\renewcommand{\contentsname}{\bfseries\hfill\fonte{12} SUMÁRIO \hfill}
+	\tableofcontents}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para capitulos
+%\newenvironment{capitulo}[1]
+%	{
+%		\begin{secaocomnumero}{\textsc{#1}}
+%	}%
+%	{
+%		\end{secaocomnumero}
+%	}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para referencias
+\newenvironment{referencias}
+	{
+	
+	}%
+	{
+	}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para glossario
+\newenvironment{glossario}
+	{
+	}%
+	{
+	}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para indice
+\newenvironment{indice}
+	{
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% formatacao estilo do titulo capitulo
+%	\titleformat{\chapter}[display]%
+%		{\bfseries\scshape}{\@empty}{0pt}%
+%		{\noindent\fonte{12}\centering\thechapter\ }%
+%	\titlespacing*{\chapter}
+%		{0pt}{-18pt}{12pt}
+	}%
+	{
+	}
+	% formatacao para indice
+	\setlength{\cftbeforetoctitleskip}{-14pt}
+	\setlength{\cftaftertoctitleskip}{18pt}
+	\setlength{\cftbeforepartskip}{0pt}
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mascara para apendice
+
+\newcommand{\anexos}{%
+	\appendix
+	\cftsetindents{chapter}{\indiceOffset}{0pt}
+	}
+
+
+\newcommand{\listanexoname}{LISTA DE ANEXOS}
+\newlistof{anexo}{anx}{\listanexoname}
+\newcommand{\anexo}[1]{%
+	\cleardoublepage
+	\refstepcounter{anexo}
+	\par\noindent\textbf{\textsc{Anexo \Alph{anexo} - #1}}
+	%\addcontentsline{anx}{anexo}{ANEXO \Alph{anexo} - #1}
+	\addcontentsline{toc}{chapter}{\hspace*{\indiceOffset}\textsc{Anexo \Alph{anexo} - #1}}
+	%{\protect\numberline{\Alph{anexo}} - #1}
+	\par
+	\vspace{12pt}}
+	
+  
+\newcommand{\apendices}{%
+	\appendix
+	\cftsetindents{chapter}{\indiceOffset}{0pt}
+	}
+\newcommand{\listapendicename}{LISTA DE APÊNDICES}
+\newlistof{apendice}{apn}{\listapendicename}
+\newcommand{\apendice}[1]{%
+	\cleardoublepage
+	\refstepcounter{apendice}
+	\par\noindent\textbf{\scshape Apêndice \Alph{apendice} - #1}
+	%\addcontentsline{apn}{apendice}{APÊNDICE \Alph{apendice} - #1}
+	\addcontentsline{toc}{chapter}{\hspace*{\indiceOffset}\scshape Apêndice \Alph{apendice} - #1}
+	%{\protect\numberline{\Alph{apendice}} - #1}
+	\par
+	\vspace{12pt}}
+
+
+	
+	\titlespacing{\apendice}
+		{0pt}{0pt}{12pt}
+
+	\titlespacing{\anexo}
+		{0pt}{0pt}{12pt}
+
+	\renewcommand{\listanexoname}{\fonte{12}\hfill\textbf{LISTA DE ANEXOS}\hfill}
+	\setlength{\cftbeforeanxtitleskip}{-14pt}
+	\setlength{\cftafteranxtitleskip}{18pt}
+	
+
+	\renewcommand{\listapendicename}{\fonte{12}\hfill\textbf{LISTA DE APÊNDICES}\hfill}
+	\setlength{\cftbeforeapntitleskip}{-14pt}
+	\setlength{\cftafterapntitleskip}{18pt}
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% formatacao estilo do titulo capitulo
+\titleformat{\chapter}[display]%
+	{\bfseries\scshape}{\@empty}{0pt}%
+	{\noindent\fonte{12}\raggedright\thechapter\ }%
+	%[\justifying\parindent=1.25cm]%
+	%[\linethickness{2pt}\line(1,0){200}]
+	
+\titlespacing*{\chapter}
+	{0pt}{-36pt}{12pt}
+
+
+
+	
+\newcommand{\sci}[1]{\ensuremath{\times 10^{#1}}}
+	
+\newcommand{\adaptadode}[1]{%
+	\linebreak
+	\begin{flushleft}
+		\fonte{10}
+		Fonte: Adaptado de #1.
+	\end{flushleft}}
+
+	
+	
+	
+	
+	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                                      %%%
+%%%                                      %%%
+%%%       DEFINIÇÃO DE ESTILOS			 %%%
+%%%                                      %%%
+%%%                                      %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% STYLES
+\tikzset{block diagram/.style={
+		graphs/every graph/.style={edges=rounded corners},
+		>=stealth',
+		shorten >=0.1cm,
+		shorten <=0.2cm,
+		thick, 
+		elle vert/.style={to path={-- ++(#1,0) |- (\tikztotarget)}},
+		elle horz/.style={to path={-- ++(0,#1) -| (\tikztotarget)}},
+		every rectangle node/.style={drop shadow},
+	}}
+
+\tikzset{text label/.style={
+		general shadow/.style=,
+		ellipse,
+		align=center
+	}}
+
+\tikzset{no shadow/.style={
+		general shadow/.style=
+	}}
+
+\tikzset{text block/.style={
+		rounded corners=0.25cm,
+		minimum height=42pt,
+		inner sep=12pt,
+		outer sep=3pt,
+		text centered,
+		align=center,
+		drop shadow,
+		draw,
+		ultra thin,
+	}}
+
+\tikzset{blue color/.style={
+		fill=cyan!65
+	}}
+
+\tikzset{red color/.style={
+		fill=red!92
+	}}
+
+\tikzset{blue block/.style={
+		rectangle,
+		text  block,
+		blue color
+	}}
+
+	\tikzset{red block/.style={
+		rectangle,
+		text block,
+		red color
+	}}
+
+	
+\tikzset{flow chart/.style={
+		block diagram,
+		start/.style={text block, rectangle, rounded corners=0.6cm, red color, inner sep=12pt, node distance=1cm},
+		block/.style={text block, rectangle, rounded corners=0.1cm, blue color, inner sep=8pt, node distance=1.3cm},
+		decis/.style={text block, diamond, blue color, aspect=1, inner sep=6pt, rounded corners=2pt, node distance = 1.2cm},
+		blank/.style={fill=none, general shadow/.style=, inner sep=0pt, outer sep=0pt, node distance=1.5cm},
+	}}
+	
+	
+	
+%\definecolor{NAMEHERE}{rgb}{0.5,0.2,0.3}
+%\colorlet{NAME}{blue!60!black}
+
+\colorlet{codecommentcolor}{purple!40!black}
+\colorlet{codekeywordcolor}{green!50!black}
+\colorlet{codestringscolor}{orange}
+\colorlet{codeidentifierscolor}{blue!60!black}
+\newcommand*{\FormatDigit}[1]{\textcolor{red}{#1}}
+
+
+\lstdefinestyle{customcpp}{
+	language=C++,
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,
+	frame=L,
+	tabsize=2,
+	showstringspaces=false,
+%	basicstyle=\small\sffamily,
+	basicstyle=\footnotesize\ttfamily,
+	columns=flexible,
+	numbers=left,
+	numberstyle=\tiny,
+	identifierstyle=\color{codeidentifierscolor},
+	keywordstyle=\color{codekeywordcolor},
+	stringstyle=\color{codestringscolor},
+	commentstyle=\color{codecommentcolor},
+	morecomment=[l][\color{codecommentcolor}]{\#},
+	breakatwhitespace=true,
+	escapeinside={(*@}{@*)},
+%	escapeinside={\%*}{*)},
+%	extendedchars=false,
+	inputencoding=utf8,
+	otherkeywords={define,\#}}
+
+
+
+\lstdefinestyle{customcs}{
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,
+	frame=L,
+	language=[Sharp]C,
+	tabsize=2,
+	showstringspaces=false,
+%	basicstyle=\small\sffamily,
+	basicstyle=\footnotesize\ttfamily,
+	columns=flexible,
+	numbers=left,
+	numberstyle=\tiny,
+	keywordstyle=\bfseries\color{codekeywordcolor},
+	commentstyle=\itshape\color{codecommentcolor},
+	identifierstyle=\color{codeidentifierscolor},
+	stringstyle=\color{codestringscolor},
+	breakatwhitespace=true,
+	escapeinside={(*@}{@*)},
+%	escapeinside={\%*}{*)},
+%	extendedchars=false,
+	inputencoding=utf8,
+	otherkeywords={define,\#}}
+
+
+\lstdefinestyle{customc}{
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,
+	frame=L,
+	language=[Sharp]C,
+	tabsize=2,
+	showstringspaces=false,
+%	basicstyle=\small\sffamily,
+	basicstyle=\footnotesize\ttfamily,
+	columns=flexible,
+	numbers=left,
+	numberstyle=\tiny,
+	keywordstyle=\bfseries\color{codekeywordcolor},
+	commentstyle=\itshape\color{codecommentcolor},
+	identifierstyle=\color{codeidentifierscolor},
+	stringstyle=\color{codestringscolor},
+	breakatwhitespace=true,
+	escapeinside={(*@}{@*)},
+%	escapeinside={\%*}{*)},
+%	extendedchars=false,
+	inputencoding=utf8,
+	otherkeywords={define,\#}}
+
+
+\lstdefinestyle{customlatex}{
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,
+	frame=L,
+	language=[LaTeX]{TeX},
+	tabsize=2,
+	showstringspaces=false,
+%	basicstyle=\small\sffamily,
+	basicstyle=\footnotesize\ttfamily,
+	columns=flexible,
+	numbers=left,
+	numberstyle=\tiny,
+	keywordstyle=\bfseries\color{codekeywordcolor},
+	commentstyle=\itshape\color{codecommentcolor},
+	identifierstyle=\color{codeidentifierscolor},
+	stringstyle=\color{codestringscolor},
+	breakatwhitespace=true,
+	extendedchars=false,
+	%inputencoding=utf8,
+	texcl=false,
+	mathescape=false}
+
+
+%%%% FROM CHANGELOG
+
+\newcommand{\defSimb}[3]{%
+	\DeclareAcronym{#1}{
+		short = {#2},
+		long = {#3}}}
+
+\LetLtxMacro{\oldacs}{\acs}
+\newcommand{\simb}[1]{\acs{#1}\index{\acs{#1}}}
+
+\newcommand{\nota}[1]{\emph{NOTA: {#1}}\addcontentsline{toc}{section}{NOTA}}
+\newcommand{\half}{\nicefrac{1}{2}}
+\newcommand{\third}{\nicefrac{1}{3}}
+\newcommand{\xx}{\emph{\textbf{XX}}\index{XX}}
+\newcommand{\XX}{\xx}
+
+
+%\definecolor{NAMEHERE}{rgb}{0.5,0.2,0.3}
+%\colorlet{NAME}{blue!60!black}
+
+\newcommand{\subs}[1]{\raisebox{-0.5ex}{\fonte{8}#1}}
+
