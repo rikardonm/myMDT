@@ -13,6 +13,7 @@ bibliografia é baseada no pacote biblatex com backend biber, impressa em 1 bloc
 o template foi criado com o miktex e texstudio, sendo estes dois "recomendados". compilado com latex.
 
 a ordem de compilacao utilizada é:
+
 1. default compiler
 2. default compiler
 3. default bibliography
@@ -29,7 +30,7 @@ onde:
 as opcoes de dupla face, lombada, coorientador, entre outros são implementados através de switches if.
 os ifs podem ser habilitados ou desabilitados conforme necessidade no arquivo:
 
-txt/configuracoes.tex
+__txt/configuracoes.tex__
 
 o arquivo apresenta comentários sucintos sobre a funcionalidade dos switches
 
