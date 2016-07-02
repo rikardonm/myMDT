@@ -1,5 +1,8 @@
 # myMdt
 
+The important notice: please give me feedback. It means ALOT. and helps. everyone.
+
+
 Versão atual: UFSM 2015
 
 # estrutura
