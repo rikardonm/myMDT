@@ -4,6 +4,9 @@ The important notice: please give me feedback. It means ALOT. and helps. everyon
 
 
 Versão atual: UFSM 2015
+Resultado: mdtRoot.pdf
+
+Arquivo __configs.txsprofile__ pode ser importado por __Options -> Load Profile__ e carrega as principais configurações (como ordem de comandos para compilar entre outros).
 
 # estrutura
 #### backbones
@@ -11,6 +14,9 @@ o documento é baseado na classe report. creio que com algumas modificações po
 novas listas para apendices e anexos foram geradas, porém suportam somente o nível principal. pretende-se implementar apendices e anexos com chapter, section, subsection, subsubsection em futuras versoes.
 gráficos e outros elementos são gerados pelo pacote tgf/tikz
 bibliografia é baseada no pacote biblatex com backend biber, impressa em 1 bloco ao final do conteudo textual
+
+please report any bugs or missing features that should be corrected or added to this.
+plans are to make a few modifications to the file structre and enable the use of the information in other files, such as a beamer presentation or quick report (w/o all the fancy quoting and stuff.)
 
 #### compilar
 o template foi criado com o miktex e texstudio, sendo estes dois "recomendados". compilado com latex.
@@ -66,30 +72,31 @@ arquivos utilizados pelo Texstudio de configuracao. compatibilidade com outros c
 arquivo principal estrutural do trabalho.
 aqui são incluidos itens como: capa, lombada, folha rosto, sumario, capitulos, etc.
 
-# NOTAS DE USO
+# Notas de Utilização
+
 utilizar os seguintes comandos. alguns comandos são nativos dos pacotes, outros são mascarados/criados para aumento de funcionalidade.
-## /index{CHAVE}
+### /index{CHAVE}
 para incluir CHAVE no índice remissivo do documento
 
-## /nomenclature{SIMBOLO}{SIGNIFICADO}
+### /nomenclature{SIMBOLO}{SIGNIFICADO}
 para incluir o SIGNIFICADO de SIMBOLO na lista de simbolos do documento
 
-## /cite{XXX}
+### /cite{XXX}
 para incluir uma referência bibliográfica previamente definida
 
-## /ref{XXX}
+### /ref{XXX}
 para incluir referência cruzada no texto
 
-## /label{XXX}
+### /label{XXX}
 para incluir uma âncora de referência cruzada
 
-## /defSimb{xxx}{yyy}{nnn}
+### /defSimb{xxx}{yyy}{nnn}
 para definir um simbolo de chave xxx,
 e forma curta yyy com forma extendida nnn
 
-## /simb{xxx}
+### /simb{xxx}
 para adicionar um simbolo e entrada no indice
 
-## /cite{xXyY}
+### /cite{xXyY}
 para adicionar uma citação da bibliografia, definida em nnn.bib
 para a adição de apendices de códigos fonte, lembrar de salvar o arquivo em UTF-8 sem BOM
