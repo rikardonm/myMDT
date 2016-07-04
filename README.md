@@ -6,7 +6,7 @@ The important notice: please give me feedback. It means ALOT. and helps. everyon
 Versão atual: UFSM 2015
 Resultado: mdtRoot.pdf
 
-Arquivo __configs.txsprofile__ pode ser importado por __Options -> Load Profile__ e carrega as principais configurações (como ordem de comandos para compilar entre outros).
+Arquivo __mdtRootProfile.txsprofile__ pode ser importado por __Options -> Load Profile__ e carrega as principais configurações (como ordem de comandos para compilar entre outros).
 
 # estrutura
 #### backbones
@@ -65,7 +65,7 @@ arquivo de estilo "mestre"
 ### mymdt.bbx, mymdt.cbx, mymdtstd.bbx
 arquivos que são utilizados pelo biblatex para estilização de citacoes e lista de referencias. arquivos baseados, se não me engano, no estilo padrão alphabetic (ctrl c+ ctrl v + mods)
 
-### mdt_template.ini, mdtRoot.txss
+### mdtRoot.txss
 arquivos utilizados pelo Texstudio de configuracao. compatibilidade com outros computadores/sistemas/versoes/idk não testada.
 
 ### mdtRoot.tex
