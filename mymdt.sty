@@ -79,6 +79,7 @@
 				arrows,
 				positioning,
 				chains,
+				fadings,
 				calc,
 				shadows}	% package options
 %\usepackage{circuitikz}						% desenha circuitos, derivação de tikz. estraga shape=diamond
@@ -86,7 +87,7 @@
 %\usepackage{tabu}							% modifica opções de tabela
 %\usepackage{fancyvrb}						% inclusão de textos dentro de arquivos verbatim
 \usepackage{listings}						% mesma coisa que o anterior
-\usepackage{listingsutf8}					% corrige acentuacao no listings
+%\usepackage{listingsutf8}					% corrige acentuacao no listings
 \usepackage{xcolor}							% inserir cor no texto
 \usepackage{tcolorbox}						% inserir caixas com cor no fundo
 \usepackage{units}							% unidades e fracoes em uma linha
@@ -97,6 +98,7 @@
 %\usepackage{gensymb}						% again, simbolos e unidades
 \usepackage{makecell}						% head de tabelas e celulas com quebra de linha
 \usepackage{array}							% modifica celulas na tabela
+\usepackage{slashbox}						% celula dividida na diagonal
 \usepackage[section]{placeins}				% força figuras dentro de subseções
 \usepackage{emptypage}						% tira o número da página em branco
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -531,7 +533,7 @@
 		\textsc{\autorGenero}\ :\ \autor\par
 		\textsc{\orientadorGenero}\ :\ \orientador\ \orientadorTitulo\par
 		\ifcoorientador
-			CO-ORIENTADOR: \bancaUm, \bancaUmTitulo\par
+			\textsc{Co-Orientador}: \bancaUm, \bancaUmTitulo\par
 		\else
 		\fi
 		\vspace{24pt}
@@ -569,7 +571,7 @@
 		AUTHOR : \autor\par
 		ADVISOR: \orientadorTitulo\ \orientador\par
 		\ifcoorientador
-			SUB-ADVISOR: \bancaUmTitulo\ \bancaUm\par
+			\textsc{Sub-Advisor}: \bancaUmTitulo\ \bancaUm\par
 		\else
 		\fi
 		\vspace{24pt}
