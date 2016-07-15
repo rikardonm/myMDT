@@ -1,6 +1,9 @@
 \begin{referencias}
 	\setlength{\bibitemsep}{0pt}
-	\printbibliography[title=REFERÊNCIAS]
-	%\renewcommand*{\textonehalf}{\nicefrac{1}{2}}
-	\addcontentsline{toc}{chapter}{\hspace{\indiceOffset}\textsc{Referências}}
+	\defbibheading{bibliography}{%
+		\begin{secaosemnumero}{REFERÊNCIAS}%
+		\end{secaosemnumero}%
+		\addcontentsline{toc}{chapter}{\hspace{\indiceOffset}\textsc{Referências}}%
+	}
+	\printbibliography
 \end{referencias}
