@@ -6,10 +6,10 @@
 	\MakeUppercase{\bfseries\universidade}\par
 	\MakeUppercase{\bfseries\centroCurso}\par
 	\MakeUppercase{\bfseries\departamentoPrograma}\par
-	\vspace{160pt}
+	\vspace{130pt}			% 8 espaços simples * 14pt *(1+1/6) % 1/6-> aumento de comprimento por espaço entre linhas
 	\fonte{16}
 	{\bfseries\autor}\par
-	\vspace{144pt}
+	\vspace{150pt}			% 8 * 16pt * 7/6
 	\fonte{14}
 	\textsc{\bfseries\tituloTrabalho}\par
 	%bottom of page
@@ -40,7 +40,7 @@
 		\node (left1)	at	(current page.south west) [xshift=\leftlength] {};
 		\node (right1)	at	(current page.north west) [xshift=\rightlength] {};
 		\draw	[fill=lombadaQuadro, draw=none] (left1)	rectangle	node [rotate=270, text width=\paperheight]
-			{\textcolor{lombadaTexto}{\hspace*{3cm}\fonte{20}\departamentoProgramaSigla , \estadoCEP\hfill\autorCitacao\hfill\ano\hspace*{4cm}}}	(right1);
+			{\textcolor{lombadaTexto}{\hspace*{3cm}\fonte{20}\departamentoProgramaSigla , \estadoCEP\hfill\autorCitacao\hfill\grauTitulacao\hfill\ano\hspace*{4cm}}}	(right1);
 		%\node (lombada) at (current page.center) [rotate=270] {\textcolor{white}{\departamentoProgramaSigla ,\quad\estadoCEP\qquad\autorCitacao\quad\ano}};
 	\end{tikzpicture}
 

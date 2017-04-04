@@ -1,31 +1,30 @@
 %faz-se a folha rosto
 \begin{folharosto}
 	\centering
+	\singlespacing
 	\fonte{12}
 	{\bfseries\autor}\par
-	\vspace{84pt}
-	\onehalfspacing
+	\vspace{98pt}		% 12pt + 2pt * 7
 	\fonte{12}
 	\textsc{\bfseries\tituloTrabalho}\par
-	
-	\vspace*{\fill} 
+	%todo: incluir subtitulo, é espaçamento 1.5
+
+	\vspace{98pt}
 	\begin{adjustwidth}{0.5\textwidth}{}
 		\fonte{12}
 		\justifying
 		\singlespacing
 		\textoFolhaRosto\ \textbf{\grauFolhaRosto}.\par
 	\end{adjustwidth}
-	\vspace*{\fill}
 
 	\centering
-	\vspace{120pt}
-	\onehalfspacing
+	\vspace{140pt}		% 12pt + 2pt * 10
 	\orientadorGenero : \orientadorTitulo\ \orientador\par
 	\ifcoorientador
 		Co-Orientador: \bancaUmTitulo\ \bancaUm\par
 	\else
 	\fi
-	
+
 	%bottom of page
 	\vfill
 	\fonte{12}

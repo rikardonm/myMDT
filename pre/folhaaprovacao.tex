@@ -4,55 +4,56 @@
 	\centering
 	\fonte{12}
 	{\bfseries\autor}\par
-	\vspace{84pt}
-	\onehalfspacing
+	\vspace{98pt}			%7 * 12pt * 7/6
+	\singlespacing
 	\fonte{12}
 	\textsc{\bfseries\tituloTrabalho}\par
-	
-	\vspace*{\fill} 
+	%todo: subititulo, tem dois pontos ??
+
+	\vspace{98pt}
 	\begin{adjustwidth}{0.5\textwidth}{}
 		\fonte{12}
 		\justifying
 		\singlespacing
 		\textoFolhaRosto\ \textbf{\grauFolhaRosto}.\par
 	\end{adjustwidth}
-	\vspace*{\fill}
 
+	\vspace{56pt}			%4 * 12pt * 7/6
 	\centering
 	\vspace{48pt}
 	% texto com nomes da banca
 	\fonte{12}
 	\textbf{Aprovado em \diaDefesa\ de\ \mesDefesa\ de\ \ano:}\par
-	
-	\vspace{48pt}
+
+	\vspace{56pt}
 	\linethickness{1.75pt}
 	\line(1,0){275}\par
 	\textbf{\orientador , \orientadorTitulo\ (\universidadeSigla)}\par
 	(Presidente/Orientador)
-	
-	\vspace{18pt}
+
+	\vspace{14pt}
 	\line(1,0){275}\par
 	\textbf{\bancaUm , \bancaUmTitulo\ (\bancaUmSigla)}\par
 	\ifcoorientador
 		{(Co-Orientador)}
 	\fi
-	
-	\vspace{18pt}
+
+	\vspace{14pt}
 	\line(1,0){275}\par
 	\textbf{\bancaDois , \bancaDoisTitulo\ (\bancaDoisSigla)}\par
 
 	\ifbancaTresExiste
-	{\vspace{18pt}\line(1,0){275}\par
+	{\vspace{14pt}\line(1,0){275}\par
 	\textbf{\bancaTres\ , \bancaTresTitulo (\bancaTresSigla)}\par}
 	\else
 	\fi
-	
+
 	\ifbancaQuatroExiste
-	{\vspace{18pt}\line(1,0){275}\par
+	{\vspace{14pt}\line(1,0){275}\par
 	\textbf{\bancaQuatro\ , \bancaQuatroTitulo (\bancaQuatroSigla)}\par}
 	\else
 	\fi
-	
+
 	%bottom of page
 	\vfill
 	\fonte{12}

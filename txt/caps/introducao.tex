@@ -10,6 +10,7 @@
 % for one thing, you should know that you don't know it all, even though it is fun to try.
 
 
+
 	\section{Objetivo do Trabalho}\label{sec:intro:objetivo}
 % apples and oranges, sheldon, apples and oranges
 
@@ -33,6 +34,7 @@
 			%\draw [thick, ->]			(sysname)		to [out=0, in=180]		($(((medicao) + (barreira))*0.75)$);
 			%\draw [thick, ->]			(iso)			to [out=180, in=0]		($(((medicao) + (barreira))*0.25)$);
 			\end{tikzpicture}
+			\fonteAutor
 		\end{figure}
 
 		O objetivo deste trabalho é o desenvolvimento do sistema de medição da Figura \ref{img:sys:whole}, composto por um \textit{hardware} de aquisição e por um \textit{software} de apresentação de dados.
@@ -116,6 +118,7 @@
 			\draw [thick, ->] (inyes)	--	node [text label, right] {Não}	(cmd);
 			\draw [thick, ->, shorten >=0pt] (cmd)	--	+(-3,0)	|-	(blan1);
 			\end{tikzpicture}
+			\fonteAutor
 		\end{figure}
 
 
@@ -146,6 +149,7 @@
 		rectangle (7,5) 
 		[dashed, draw=black, line width=1pt];
 		\end{tikzpicture}
+		\fonteAutor
 	\end{figure}
 
 	\section{Algumas Equações}
@@ -158,6 +162,9 @@
 		Sens\quad Tens\tilde{a}o &= \frac{29.9965}{0.076592} \cdot \frac{1}{1} \cdot \frac{5}{2^{24}} = 116,718\mu V		\\[24pt]
 		Sens\quad Corrente &= \frac{1}{0.0003} \cdot \frac{1}{176} \cdot \frac{5}{2^{24}} = 5,644\mu A
 		\end{align}
+
+		Texto inserido com referência \cite{
+
 
 		E depois mais equações abaixo:
 
