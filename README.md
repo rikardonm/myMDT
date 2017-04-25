@@ -100,3 +100,7 @@ para adicionar um simbolo e entrada no indice
 ### /cite{xXyY}
 para adicionar uma citação da bibliografia, definida em nnn.bib
 para a adição de apendices de códigos fonte, lembrar de salvar o arquivo em UTF-8 sem BOM
+
+
+Obrigado pelas correções enviadas:
+Thais B, Moises S.

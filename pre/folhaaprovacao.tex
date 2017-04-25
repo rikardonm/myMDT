@@ -5,12 +5,24 @@
 	\fonte{12}
 	{\bfseries\autor}\par
 	\vspace{98pt}			%7 * 12pt * 7/6
+
+	\ifbancaCincoExiste
+	\vspace{-24pt}
+	\else
+	\fi
+
 	\singlespacing
 	\fonte{12}
 	\textsc{\bfseries\tituloTrabalho}\par
 	%todo: subititulo, tem dois pontos ??
 
 	\vspace{98pt}
+
+	\ifbancaCincoExiste
+		\vspace{-24pt}
+	\else
+	\fi
+
 	\begin{adjustwidth}{0.5\textwidth}{}
 		\fonte{12}
 		\justifying
@@ -19,8 +31,20 @@
 	\end{adjustwidth}
 
 	\vspace{56pt}			%4 * 12pt * 7/6
+
+	\ifbancaCincoExiste
+	\vspace{-16pt}
+	\else
+	\fi
+
 	\centering
 	\vspace{48pt}
+
+	\ifbancaCincoExiste
+	\vspace{-16pt}
+	\else
+	\fi
+
 	% texto com nomes da banca
 	\fonte{12}
 	\textbf{Aprovado em \diaDefesa\ de\ \mesDefesa\ de\ \ano:}\par
@@ -53,6 +77,13 @@
 	\textbf{\bancaQuatro\ , \bancaQuatroTitulo (\bancaQuatroSigla)}\par}
 	\else
 	\fi
+
+	\ifbancaCincoExiste
+	{\vspace{14pt}\line(1,0){275}\par
+		\textbf{\bancaCinco\ , \bancaCincoTitulo (\bancaCincoSigla)}\par}
+	\else
+	\fi
+
 
 	%bottom of page
 	\vfill

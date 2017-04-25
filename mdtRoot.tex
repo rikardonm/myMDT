@@ -9,11 +9,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newif\ifduplaFace			\duplaFacefalse
+\newif\iffichaCatalografica	\fichaCatalograficafalse
 \newif\iflombadaNaCapa		\lombadaNaCapafalse
 
 \newif\ifcoorientador		\coorientadorfalse
 \newif\ifbancaTresExiste	\bancaTresExistefalse
 \newif\ifbancaQuatroExiste	\bancaQuatroExistefalse
+\newif\ifbancaCincoExiste	\bancaCincoExistefalse
+
 
 \newif\ifdebug				\debugtrue
 
@@ -44,7 +47,7 @@
 
 	\input{pre/capa}
 	\input{pre/folharosto}
-	%\include{pre/fichacatalografica}	% no need, no do
+	\include{pre/fichacatalografica}
 	%\include{pre/errata}				% no need, no do
 	\input{pre/folhaaprovacao}
 

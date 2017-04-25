@@ -28,7 +28,7 @@
 %\usepackage{rotating}						% lombada na capa
 \usepackage{boxedminipage}					% lombada na capa
 \usepackage{ragged2e}						% justify
-\usepackage{changepage}						% margens especiais em blocos de texto	
+\usepackage{changepage}						% margens especiais em blocos de texto
 \usepackage{titlesec}						% muda o estilo do titulo do capitulo
 
 \usepackage{tocloft}						% estilo TOC
@@ -86,13 +86,17 @@
 \usepackage{subcaption}						% usado para multiplas figuras dentro de um unico float
 %\usepackage{tabu}							% modifica opções de tabela
 %\usepackage{fancyvrb}						% inclusão de textos dentro de arquivos verbatim
-\usepackage{listings}						% mesma coisa que o anterior
+\usepackage{listings}						% mesma coisa que o anterior, para códigos de programa
+\usepackage[portuguese,
+			ruled,
+			lined,
+			linesnumbered]{algorithm2e}		% para a criação de algorítmos
 %\usepackage{listingsutf8}					% corrige acentuacao no listings
 \usepackage{xcolor}							% inserir cor no texto
 \usepackage{tcolorbox}						% inserir caixas com cor no fundo
 \usepackage{units}							% unidades e fracoes em uma linha
 \usepackage{multirow}						% celulas com varias linhas em tabelas
-\usepackage{siunits}						% unidades do SI, como celsius
+\usepackage{SIunits}						% unidades do SI, como celsius
 %\usepackage[scientific-notation=true]
 %			{siunitx}						% unidades, all over again
 %\usepackage{gensymb}						% again, simbolos e unidades
@@ -164,9 +168,15 @@
 \newcommand{\bancaTresSigla}			{DISH}
 \newcommand{\bancaTresTitulo}			{tihs}
 
-\newcommand{\bancaQuatro}				{fuck this shit}
-\newcommand{\bancaQuatroSigla}			{DISH}
-\newcommand{\bancaQuatroTitulo}			{tihs}
+
+\newcommand{\bancaQuatro}				{FREFASZ GFSDA ASD}
+\newcommand{\bancaQuatroSigla}			{dsa}
+\newcommand{\bancaQuatroTitulo}			{FEASD}
+
+
+\newcommand{\bancaCinco}				{fdofadsshit}
+\newcommand{\bancaCincoSigla}			{fddas}
+\newcommand{\bancaCincoTitulo}			{FAS}
 
 
 
@@ -276,8 +286,10 @@
 %		\justifying
 %		\parindent=1.25cm
 %		}
-		
-		
+
+\patchcmd{\chapter}{plain}{empty}{}{}
+
+
 % formatacao estilo titulo secoes
 	\titleformat{\section}%
 		[display]%
@@ -288,7 +300,7 @@
 		%[\justifying\parindent=1.25cm]
 		
 	\titlespacing{\section}
-		{0pt}{0pt}{12pt}
+		{0pt}{14pt}{14pt}
 
 % formatacao do estilo subsecos
 	\titleformat{\subsection}
@@ -300,8 +312,19 @@
 		%[\justifying\parindent=1.25cm]
 
 	\titlespacing{\subsection}
-		{0pt}{0pt}{12pt}
-		
+		{0pt}{14pt}{14pt}
+
+
+	\titleformat{\subsubsection}
+		[display]
+		{\normalfont}
+		{\@empty}
+		{0pt}
+		{\itshape\fonte{12}\raggedright\thesubsubsection\ }
+
+	\titlespacing{\subsubsection}
+		{0pt}{14pt}{14pt}
+
 
 % formatacao para ilustracoes e tabelas
 	\setlength{\cftbeforeloftitleskip}{-14pt}
@@ -846,7 +869,7 @@
 	escapeinside={(*@}{@*)},
 %	escapeinside={\%*}{*)},
 %	extendedchars=false,
-	inputencoding=utf8,
+	inpl132utencoding=utf8,
 	otherkeywords={define,\#}}
 
 
@@ -871,7 +894,7 @@
 	escapeinside={(*@}{@*)},
 %	escapeinside={\%*}{*)},
 %	extendedchars=false,
-	inputencoding=utf8,
+	inpl132utencoding=utf8,
 	otherkeywords={define,\#}}
 
 
@@ -895,7 +918,7 @@
 	escapeinside={(*@}{@*)},
 %	escapeinside={\%*}{*)},
 %	extendedchars=false,
-	inputencoding=utf8,
+	inpl132utencoding=utf8,
 	otherkeywords={define,\#}}
 
 
@@ -917,7 +940,7 @@
 	stringstyle=\color{codestringscolor},
 	breakatwhitespace=true,
 	extendedchars=false,
-	%inputencoding=utf8,
+	%inpl132utencoding=utf8,
 	texcl=false,
 	mathescape=false}
 
@@ -943,4 +966,6 @@
 %\colorlet{NAME}{blue!60!black}
 
 \newcommand{\subs}[1]{\raisebox{-0.5ex}{\fonte{8}#1}}
+
+
 

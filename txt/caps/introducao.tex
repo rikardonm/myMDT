@@ -107,13 +107,13 @@
 			\begin{tikzpicture}[flow chart]
 			\node (start)	[start]	{Inicio da\\Tarefa};
 			\node (blan1)	[blank, below=of start]	{};
-			\node (input)	[decis, below=of blan1]	{Comando\\Recebido?};
-			\node (inyes)	[decis, right=of input]	{Comando\\exit?};
+			\node (inpl132ut)	[decis, below=of blan1]	{Comando\\Recebido?};
+			\node (inyes)	[decis, right=of inpl132ut]	{Comando\\exit?};
 			\node (exit)	[start, right=of inyes]	{Finaliza\\Tarefa};
 			\node (cmd)		[block, above=of inyes]	{Processa\\Comando};
-			\draw [thick, ->] (start)	--	(input);
-			\draw [thick, ->] (input)	--	node [text label, above] {Sim}	(inyes);
-			\draw [thick, ->, shorten >=0pt] (input.west)	-|	node [text label, above right] {Não}	+(-1,1)	|-	(blan1);
+			\draw [thick, ->] (start)	--	(inpl132ut);
+			\draw [thick, ->] (inpl132ut)	--	node [text label, above] {Sim}	(inyes);
+			\draw [thick, ->, shorten >=0pt] (inpl132ut.west)	-|	node [text label, above right] {Não}	+(-1,1)	|-	(blan1);
 			\draw [thick, ->] (inyes)	--	node [text label, above] {Sim}	(exit);
 			\draw [thick, ->] (inyes)	--	node [text label, right] {Não}	(cmd);
 			\draw [thick, ->, shorten >=0pt] (cmd)	--	+(-3,0)	|-	(blan1);
@@ -133,7 +133,7 @@
 		inout/.style={circle, draw, radius=4pt, thick}, 
 		meter/.style={circle, draw, minimum size=1cm, align=center, thick}]
 		\node (inneg) at (0,0)	[inout]	{};
-		\node (inpos) at (0,4) [inout]	{};
+		\node (inpl132os) at (0,4) [inout]	{};
 		\node (ampneg) at (3,0) [meter] {A};
 		\node (amppos) at (3,4) [meter] {A};
 		\node (volt) at (5,2) [meter] {V};
@@ -142,7 +142,7 @@
 		\node (outneg) at (9,0)	[inout]	{};
 		\node (outpos) at (9,4)[inout] {};
 		\draw (inneg) node [text label, above] {Entrada\\(-)} -- (ampneg) -- (ptneg) -- (outneg) node [text label, above] {Saída\\(-)};
-		\draw (inpos) node [text label, below] {Entrada\\(+)} -- (amppos) -- (ptpos) -- (outpos) node [text label, below] {Saída\\(+)};
+		\draw (inpl132os) node [text label, below] {Entrada\\(+)} -- (amppos) -- (ptpos) -- (outpos) node [text label, below] {Saída\\(+)};
 		\draw (volt) -- (ptneg);
 		\draw (volt) -- (ptpos);
 		\draw (1,-1) 
@@ -163,9 +163,6 @@
 		Sens\quad Corrente &= \frac{1}{0.0003} \cdot \frac{1}{176} \cdot \frac{5}{2^{24}} = 5,644\mu A
 		\end{align}
 
-		Texto inserido com referência \cite{
-
-
 		E depois mais equações abaixo:
 
 		\begin{align}
@@ -183,3 +180,36 @@
 		\Delta Sens = \frac{\frac{1}{Ganho_{Sensor}} \cdot \frac{1}{Ganho_{AMP}} \cdot \frac{ADC_{range}}{2^{ADC_{bits}}}}{\frac{1}{Ganho_{Sensor}} \cdot \frac{1}{Ganho_{AMP}} \cdot \frac{ADC_{range}}{2^{ADC_{bitsNew}}}} = \frac{2^{ADC_{bits}}}{2^{ADC_{bitsNew}}} = 2^{ADC_{bits} - ADC_{bitsNew}}
 		\end{equation}
 
+		\subsection{Antes do Algoritmo, Outro Teste}
+			\kant[2-4]
+
+		\subsection{Again}
+			\lipsum[3]
+
+		\subsubsection{IDK anymore}
+			\lipsum[2-4]
+
+		Aqui um teste de algoritmo, com referência \ref{algoritmo_GRASP}:
+
+
+		\begin{algorithm}
+			\LinesNumbered
+			\SetKwData{Left}{left}\SetKwData{This}{this}\SetKwData{Up}{up}
+			\SetKwFunction{Union}{Union}\SetKwFunction{FindCompress}{FindCompress}
+			\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+			\Entrada{dados de entrada (MaxIteiração,semente)}
+			\Resultado{melhor solução $x^{*} \in X$}
+			\BlankLine
+			\Para{$i = 1,...,$ \Ate MaxIteiração\_int}{
+				x $\leftarrow $ {Fase de Busca Construtiva Aleatória - FBC (semente)}\;
+				x $\leftarrow $ {Fase de Melhoria Local - FML (x)}\;
+				\Se{$f(x) < f(x)^{*}$}{
+					$f(x)^{*} \leftarrow f(x)$\;
+					$x^{*} \leftarrow x$\;
+				}
+			}
+			\caption{Descrição genérica do algoritmo GRASP}\label{algoritmo_GRASP}
+		\end{algorithm}
+		\FloatBarrier
+
+		\lipsum[3-6]
