@@ -3,9 +3,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[T1]{fontenc}					% acentuação
 \usepackage[utf8]{inputenc}					% acentuacao tbm?
-\DeclareUnicodeCharacter{FEFF}{ }			% define BOM (byte order mask) como espaç nulo
-\DeclareUnicodeCharacter{20B3B}{ }			% nem idéia
-\DeclareUnicodeCharacter{BD}{1/2}			% don't even care anymore
 \usepackage[brazilian]{babel}				% troca a lingua para ptg
 \usepackage{letltxmacro}					% redefinição segura de comandos nativos
 \usepackage{kantlipsum}						% textos do kant
@@ -214,10 +211,10 @@
 %% Command Masks
 % redefine as varáveis iniciais
 	\newcommand{\set}[2]{\renewcommand{#1}{#2}}
-	
+
 % troca fonte do texto
 	\newcommand{\fonte}[1]{\fontsize{#1}{#1}\selectfont}
-	
+
 % switch para face simples ou face dupla
 	\ifduplaFace
 		\newcommand{\oddpage}{\cleardoublepage}
@@ -239,7 +236,7 @@
 
 
 
-		
+
 % espaçamento entre linhas na tabela
 \renewcommand{\arraystretch}{1.5}
 
@@ -253,16 +250,16 @@
 % manual nomenclature description
 % copy code from secao sem numero
 \def\thenomenclature{%
-		\cleardoublepage
-		\setlength{\headheight}{15pt}
-		\onehalfspacing
-		\fonte{12}
-		\vspace{18pt}%
-		\centering
-		\textbf{LISTA DE ABREVIATURAS E SIGLAS}\par%
-		\vspace{18pt}
-\nompreamble
-\list{}{%
+	\cleardoublepage
+	\setlength{\headheight}{15pt}
+	\onehalfspacing
+	\fonte{12}
+	\vspace{18pt}%
+	\centering
+	\textbf{LISTA DE ABREVIATURAS E SIGLAS}\par%
+	\vspace{18pt}
+	\nompreamble
+	\list{}{%
 	\labelwidth\nom@tempdim%
 	\leftmargin\labelwidth%
 	\advance\leftmargin\labelsep%
@@ -273,9 +270,9 @@
 	\nompostamble}
 
 
-	
 
-		
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% mascara para seções com numeração
 %\LetLtxMacro{\oldchapter}{\chapter}
@@ -289,6 +286,20 @@
 
 \patchcmd{\chapter}{plain}{empty}{}{}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% formatacao estilo do titulo capitulo
+	\titleformat{\chapter}
+		[display]
+		{\bfseries\scshape}
+		{\@empty}
+		{0pt}
+		{\noindent\fonte{12}\raggedright\thechapter\ }
+		%[\justifying\parindent=1.25cm]%
+		%[\linethickness{2pt}\line(1,0){200}]
+
+	\titlespacing*{\chapter}
+		{0pt}{-36pt}{12pt}
 
 % formatacao estilo titulo secoes
 	\titleformat{\section}%
@@ -329,13 +340,13 @@
 % formatacao para ilustracoes e tabelas
 	\setlength{\cftbeforeloftitleskip}{-14pt}
 	\setlength{\cftafterloftitleskip}{18pt}
-	
+
 	\setlength{\cftbeforelottitleskip}{-14pt}
 	\setlength{\cftafterlottitleskip}{18pt}
-	
+
 	\counterwithout{figure}{chapter}
 	\counterwithout{table}{chapter}
-	
+
 	\captionsetup[figure]{format=plain, format=hang, labelformat=simple, labelsep=endash, font=small, position=top, name=Figura, aboveskip=18pt, belowskip=12pt, singlelinecheck=off}
 	\captionsetup[table]{format=plain, format=hang, labelformat=simple, labelsep=endash, font=small, position=top, name=Quadro, aboveskip=18pt, belowskip=12pt, singlelinecheck=off}
 	\captionsetup[subfigure]{format=plain, format=hang, labelformat=simple, labelsep=endash, font=small, position=top, aboveskip=12pt, belowskip=12pt, singlelinecheck=off}
@@ -362,7 +373,7 @@
 	\cftsetindents{section}{0pt}{\indiceOffset}
 	\cftsetindents{subsection}{0pt}{\indiceOffset}
 	\cftsetindents{subsubsection}{0pt}{\indiceOffset}
-	
+
 
 
 	% formata figuras env.
@@ -385,7 +396,7 @@
 	\cleardoublepage
 	\renewcommand{\listfigurename}{\bfseries\hfill\fonte{12} LISTA DE FIGURAS \hfill}
 	\listoffigures}
-	
+
 % lista de simbolos
 \newcommand{\listadesimbolos}{%
 	\cleardoublepage
@@ -394,9 +405,9 @@
 		\acsetup{list-short-width={3cm}, list-style=tabular}
 		\printacronyms[heading=empty]
 	\end{secaosemnumero}}
-	
-	
-		
+
+
+
 % formata referencias
 	%\defbibheading{referencias}[Referências]{\chapter*{}}
 	\setlength{\bibhang}{0pt}
@@ -408,9 +419,9 @@
 	\DeclareFieldFormat*{title}{#1}
 	\DeclareFieldFormat*{citetitle}{#1}
 
-	
-	
-	
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% mascara para seções sem numeração
 \newenvironment{secaosemnumero}[1]
@@ -467,7 +478,7 @@
 	}
 	{
 		%\end{titlepage}
-	}  	
+	}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% mascara para folha rosto
 \newenvironment{folharosto}
@@ -486,7 +497,7 @@
 	}
 	{
 		%\oddpage
-	}	
+	}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% mascara para dedicatoria
 \newenvironment{dedicatoria}
@@ -506,7 +517,7 @@
 		\vspace*{\fill}
 		\end{secaosemnumero}
 		%\oddpage
-	}	
+	}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% mascara para agradecimentos
 \newenvironment{agradecimentos}
@@ -522,7 +533,7 @@
 		\end{itshape}
 		\end{secaosemnumero}
 		%\oddpage
-	}	
+	}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% mascara para epígrafe
 \newenvironment{epigrafe}
@@ -570,7 +581,7 @@
 	{
 		\end{secaosemnumero}
 	}
-	
+
 	% mascara para palavras chave
 	\newcommand{\keywords}[1]
 	{
@@ -578,8 +589,8 @@
 		\textbf{#1:\ }
 	}
 
-	
-	
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% mascara para abstract
 \newenvironment{myabstract}
@@ -608,7 +619,7 @@
 	{
 		\end{secaosemnumero}
 		\doislados
-	}  
+	}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% mascara para lista de figuras
@@ -625,22 +636,14 @@
 \newcommand{\sumario}{%
 	\renewcommand{\numberline}{\oldnumberline}
 	\cleardoublepage
+	\setcounter{tocdepth}{4}
+	\setcounter{secnumdepth}{5}
 	\renewcommand{\contentsname}{\bfseries\hfill\fonte{12} SUMÁRIO \hfill}
 	\tableofcontents}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% mascara para capitulos
-%\newenvironment{capitulo}[1]
-%	{
-%		\begin{secaocomnumero}{\textsc{#1}}
-%	}%
-%	{
-%		\end{secaocomnumero}
-%	}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% mascara para referencias
 \newenvironment{referencias}
 	{
-	
 	}%
 	{
 	}
@@ -670,7 +673,7 @@
 	\setlength{\cftaftertoctitleskip}{18pt}
 	\setlength{\cftbeforepartskip}{0pt}
 
-	
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% mascara para apendice
 
@@ -691,8 +694,8 @@
 	%{\protect\numberline{\Alph{anexo}} - #1}
 	\par
 	\vspace{12pt}}
-	
-  
+
+
 \newcommand{\apendices}{%
 	\appendix
 	\cftsetindents{chapter}{\indiceOffset}{0pt}
@@ -710,7 +713,7 @@
 	\vspace{12pt}}
 
 
-	
+
 	\titlespacing{\apendice}
 		{0pt}{0pt}{12pt}
 
@@ -720,27 +723,14 @@
 	\renewcommand{\listanexoname}{\fonte{12}\hfill\textbf{LISTA DE ANEXOS}\hfill}
 	\setlength{\cftbeforeanxtitleskip}{-14pt}
 	\setlength{\cftafteranxtitleskip}{18pt}
-	
+
 
 	\renewcommand{\listapendicename}{\fonte{12}\hfill\textbf{LISTA DE APÊNDICES}\hfill}
 	\setlength{\cftbeforeapntitleskip}{-14pt}
 	\setlength{\cftafterapntitleskip}{18pt}
 
-	
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% formatacao estilo do titulo capitulo
-\titleformat{\chapter}[display]%
-	{\bfseries\scshape}{\@empty}{0pt}%
-	{\noindent\fonte{12}\raggedright\thechapter\ }%
-	%[\justifying\parindent=1.25cm]%
-	%[\linethickness{2pt}\line(1,0){200}]
-	
-\titlespacing*{\chapter}
-	{0pt}{-36pt}{12pt}
 
 
-
-	
 \newcommand{\sci}[1]{\ensuremath{\times 10^{#1}}}
 
 \newcommand{\adaptadode}[1]{%
