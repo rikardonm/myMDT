@@ -103,4 +103,4 @@ para a adição de apendices de códigos fonte, lembrar de salvar o arquivo em U
 
 
 Obrigado pelas correções enviadas:
-Thais B, Moises S.
+Thais B, Moises S., Alessandro G.
