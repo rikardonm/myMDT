@@ -102,6 +102,7 @@
 \usepackage{slashbox}						% celula dividida na diagonal
 \usepackage[section]{placeins}				% força figuras dentro de subseções
 \usepackage{emptypage}						% tira o número da página em branco
+\usepackage{longtable}						% quebra lista de simbolos em mais de uma página
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -402,8 +403,11 @@
 	\cleardoublepage
 	\DeclareInstance{acro-title}{empty}{sectioning}{name-format =}
 	\begin{secaosemnumero}{LISTA DE SÍMBOLOS}
-		\acsetup{list-short-width={3cm}, list-style=tabular}
-		\printacronyms[heading=empty]
+		\begingroup
+			\acsetup{list-short-width={3cm}, list-style=longtable}
+			\setlength{\LTleft}{-\tabcolsep}
+			\printacronyms[heading=none]
+		\endgroup
 	\end{secaosemnumero}}
 
 
